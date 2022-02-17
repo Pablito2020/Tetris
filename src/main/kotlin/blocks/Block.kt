@@ -9,10 +9,10 @@ abstract class Block(private val FORMATS_OF_BLOCK: List<List<Position>>, private
     private var currentFormatIndex = 0
 
     fun getNeededPositions(): Collection<Position> {
-        val result = ArrayList<Position>()
-        for (currentPosition in FORMATS_OF_BLOCK[currentFormatIndex])
-            result.add(Position(currentPosition.x + initialPosition.x, currentPosition.y + initialPosition.y))
-        return result
+        val currentBlockFormat = FORMATS_OF_BLOCK[currentFormatIndex]
+        return currentBlockFormat.stream()
+            .map { position -> Position(position.x + initialPosition.x, position.y + initialPosition.y) }
+            .toList()
     }
 
     fun rotate(degree: Rotation) {
