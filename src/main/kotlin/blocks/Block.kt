@@ -25,11 +25,13 @@ abstract class Block(private val TYPES: List<List<Position>>, private var initia
     }
 
     fun move(direction: Direction) {
-        val x = when (direction) {
+        val x = when(direction) {
             Direction.LEFT -> -1
             Direction.RIGHT -> 1
+            else -> 0
         }
-        initialPosition = Position(initialPosition.x, initialPosition.y + x)
+        val y = if (direction == Direction.DOWN) 1 else 0
+        initialPosition = Position(initialPosition.x + y, initialPosition.y + x)
     }
 
 }
