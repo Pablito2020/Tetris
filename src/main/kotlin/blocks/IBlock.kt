@@ -1,5 +1,6 @@
-import Rotation.LEFT_90_DEGREE
-import Rotation.RIGHT_90_DEGREE
+package blocks
+
+import movements.*
 
 class IBlock(private val initialPosition: Position) {
 
@@ -21,8 +22,8 @@ class IBlock(private val initialPosition: Position) {
 
     fun rotate(degree: Rotation) {
         currentTypeIBlockIndex = when (degree) {
-            RIGHT_90_DEGREE -> currentTypeIBlockIndex + 1 % TYPES.size
-            LEFT_90_DEGREE -> {
+            Rotation.RIGHT_90_DEGREE -> currentTypeIBlockIndex + 1 % TYPES.size
+            Rotation.LEFT_90_DEGREE -> {
                 if (currentTypeIBlockIndex == 0) TYPES.size - 1 else currentTypeIBlockIndex - 1
             }
         }
