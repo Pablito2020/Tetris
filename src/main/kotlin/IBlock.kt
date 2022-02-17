@@ -1,6 +1,7 @@
-import Rotation.*
+import Rotation.LEFT_90_DEGREE
+import Rotation.RIGHT_90_DEGREE
 
-class IBlock(val position: Position) {
+class IBlock(private val initialPosition: Position) {
 
     var current_type_iblock_index = 0
 
@@ -13,20 +14,16 @@ class IBlock(val position: Position) {
 
     fun getNeededPositions(): Collection<Position> {
         val result = ArrayList<Position>()
-        for(currentPosition in IBLOCK_POSSIBLE_VALUES[current_type_iblock_index])
-            result.add(Position(currentPosition.x + position.x, currentPosition.y + position.y))
+        for (currentPosition in IBLOCK_POSSIBLE_VALUES[current_type_iblock_index])
+            result.add(Position(currentPosition.x + initialPosition.x, currentPosition.y + initialPosition.y))
         return result
     }
 
     fun rotate(degree: Rotation) {
-        current_type_iblock_index = when(degree) {
+        current_type_iblock_index = when (degree) {
             RIGHT_90_DEGREE -> current_type_iblock_index + 1 % IBLOCK_POSSIBLE_VALUES.size
             LEFT_90_DEGREE -> {
-                if (current_type_iblock_index == 0)
-                    IBLOCK_POSSIBLE_VALUES.size - 1
-                else {
-                    current_type_iblock_index - 1
-                }
+                if (current_type_iblock_index == 0) IBLOCK_POSSIBLE_VALUES.size - 1 else current_type_iblock_index - 1
             }
         }
     }
