@@ -1,7 +1,7 @@
-class IBlock(position: Position) {
+class IBlock(val position: Position) {
 
     fun getNeededPositions(): List<Position> {
-        return listOf(Position(0,0), Position(0, 1), Position(0, 2), Position(0, 3))
+        return listOf(Position(0, this.position.y), Position(0, this.position.y + 1), Position(0, this.position.y + 2), Position(0, this.position.y + 3))
     }
 
 }
