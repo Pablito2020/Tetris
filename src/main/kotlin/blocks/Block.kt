@@ -2,7 +2,6 @@ package blocks
 
 import movements.Direction
 import movements.Position
-import movements.Rotation
 
 abstract class Block(private val FORMATS_OF_BLOCK: List<List<Position>>, private var initialPosition: Position) {
 
