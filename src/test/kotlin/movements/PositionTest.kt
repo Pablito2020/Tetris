@@ -15,17 +15,17 @@ class PositionTest {
 
     @Test
     fun `Apply DOWN direction`(){
-        assertEquals(Position(1,2), position.move(Direction.DOWN))
+        assertEquals(Position(2,1), position.move(Direction.DOWN))
     }
 
     @Test
     fun `Apply LEFT direction`(){
-        assertEquals(Position(0,1), position.move(Direction.LEFT))
+        assertEquals(Position(1,0), position.move(Direction.LEFT))
     }
 
     @Test
     fun `Apply RIGHT direction`(){
-        assertEquals(Position(2,1), position.move(Direction.RIGHT))
+        assertEquals(Position(1,2), position.move(Direction.RIGHT))
     }
 
 }
