@@ -22,7 +22,7 @@ class IBlock(private val initialPosition: Position) {
 
     fun rotate(degree: Rotation) {
         currentTypeIBlockIndex = when (degree) {
-            Rotation.RIGHT_90_DEGREE -> currentTypeIBlockIndex + 1 % TYPES.size
+            Rotation.RIGHT_90_DEGREE -> (currentTypeIBlockIndex + 1) % TYPES.size
             Rotation.LEFT_90_DEGREE -> {
                 if (currentTypeIBlockIndex == 0) TYPES.size - 1 else currentTypeIBlockIndex - 1
             }
