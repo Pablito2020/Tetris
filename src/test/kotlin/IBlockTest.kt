@@ -21,4 +21,13 @@ class IBlockTest {
         )
     }
 
+    @Test
+    fun `position 1,0 needed positions are (1,0), (1,1), (1,2), (1,3)`() {
+        val iBlock = IBlock(Position(1, 0))
+        assertEquals(
+            listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(1, 3)),
+            iBlock.getNeededPositions()
+        )
+    }
+
 }
