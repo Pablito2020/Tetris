@@ -76,4 +76,24 @@ class IBlockTest {
         )
     }
 
+    @Test
+    fun `Rotate block 90 degrees to Left changed needed positions from (0, 1)`() {
+        val iBlock = IBlock(Position(0, 1))
+        iBlock.rotate(Rotation.LEFT_90_DEGREE)
+        assertEquals(
+            listOf(Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)),
+            iBlock.getNeededPositions()
+        )
+    }
+
+    @Test
+    fun `Rotate block 90 degrees to Left changed needed positions from (1, 0)`() {
+        val iBlock = IBlock(Position(1, 0))
+        iBlock.rotate(Rotation.LEFT_90_DEGREE)
+        assertEquals(
+            listOf(Position(1, 1), Position(2, 1), Position(3, 1), Position(4, 1)),
+            iBlock.getNeededPositions()
+        )
+    }
+
 }
