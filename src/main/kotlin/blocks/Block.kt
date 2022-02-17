@@ -11,7 +11,7 @@ abstract class Block(private val FORMATS_OF_BLOCK: List<List<Position>>, private
     fun getNeededPositions(): Collection<Position> {
         val currentBlockFormat = FORMATS_OF_BLOCK[currentFormatIndex]
         return currentBlockFormat.stream()
-            .map { position -> Position(position.x + initialPosition.x, position.y + initialPosition.y) }
+            .map { position -> Position(position.row + initialPosition.row, position.column + initialPosition.column) }
             .toList()
     }
 
@@ -25,13 +25,13 @@ abstract class Block(private val FORMATS_OF_BLOCK: List<List<Position>>, private
     }
 
     fun move(direction: Direction) {
-        val x = when (direction) {
+        val columnOffset = when (direction) {
             Direction.LEFT -> -1
             Direction.RIGHT -> 1
             else -> 0
         }
-        val y = if (direction == Direction.DOWN) 1 else 0
-        initialPosition = Position(initialPosition.x + y, initialPosition.y + x)
+        val rowOffset = if (direction == Direction.DOWN) 1 else 0
+        initialPosition = Position(initialPosition.row + rowOffset, initialPosition.column + columnOffset)
     }
 
 }
