@@ -25,7 +25,7 @@ abstract class Block(private val TYPES: List<List<Position>>, private var initia
     }
 
     fun move(direction: Direction) {
-        val x = when(direction) {
+        val x = when (direction) {
             Direction.LEFT -> -1
             Direction.RIGHT -> 1
             else -> 0
