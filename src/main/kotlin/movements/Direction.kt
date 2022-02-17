@@ -2,5 +2,6 @@ package movements
 
 enum class Direction {
     LEFT,
-    RIGHT
+    RIGHT,
+    DOWN
 }

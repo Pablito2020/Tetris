@@ -53,4 +53,23 @@ class IBlockMoveTest {
         )
     }
 
+    @Test
+    fun `Move down changes row minus one`() {
+        IBlock.move(Direction.DOWN)
+        assertEquals(
+            listOf(Position(4, 2), Position(4, 3), Position(4, 4), Position(4, 5)),
+            IBlock.getNeededPositions()
+        )
+    }
+
+    @Test
+    fun `Double move Down changes row minus two`() {
+        IBlock.move(Direction.DOWN)
+        IBlock.move(Direction.DOWN)
+        assertEquals(
+            listOf(Position(5, 2), Position(5, 3), Position(5, 4), Position(5, 5)),
+            IBlock.getNeededPositions()
+        )
+    }
+
 }
