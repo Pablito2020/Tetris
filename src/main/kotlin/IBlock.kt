@@ -21,6 +21,7 @@ class IBlock(val position: Position) {
     fun rotate(degree: Rotation) {
         current_type_iblock_index = when(degree) {
             RIGHT_90_DEGREE -> current_type_iblock_index + 1 % IBLOCK_POSSIBLE_VALUES.size
+            else -> TODO()
         }
     }
 
