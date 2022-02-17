@@ -4,22 +4,22 @@ import movements.Direction
 import movements.Position
 import movements.Rotation
 
-abstract class Block(private val TYPES: List<List<Position>>, private var initialPosition: Position) {
+abstract class Block(private val FORMATS_OF_BLOCK: List<List<Position>>, private var initialPosition: Position) {
 
-    private var currentTypeIBlockIndex = 0
+    private var currentFormatIndex = 0
 
     fun getNeededPositions(): Collection<Position> {
         val result = ArrayList<Position>()
-        for (currentPosition in TYPES[currentTypeIBlockIndex])
+        for (currentPosition in FORMATS_OF_BLOCK[currentFormatIndex])
             result.add(Position(currentPosition.x + initialPosition.x, currentPosition.y + initialPosition.y))
         return result
     }
 
     fun rotate(degree: Rotation) {
-        currentTypeIBlockIndex = when (degree) {
-            Rotation.RIGHT_90_DEGREE -> (currentTypeIBlockIndex + 1) % TYPES.size
+        currentFormatIndex = when (degree) {
+            Rotation.RIGHT_90_DEGREE -> (currentFormatIndex + 1) % FORMATS_OF_BLOCK.size
             Rotation.LEFT_90_DEGREE -> {
-                if (currentTypeIBlockIndex == 0) TYPES.size - 1 else currentTypeIBlockIndex - 1
+                if (currentFormatIndex == 0) FORMATS_OF_BLOCK.size - 1 else currentFormatIndex - 1
             }
         }
     }
