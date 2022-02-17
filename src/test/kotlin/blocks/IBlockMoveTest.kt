@@ -1,12 +1,13 @@
 package blocks
 
+import blocks.interfaces.MoveTest
 import movements.Direction
 import movements.Position
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class IBlockMoveTest {
+class IBlockMoveTest: MoveTest{
 
     private lateinit var IBlock: IBlock
 
@@ -16,16 +17,7 @@ class IBlockMoveTest {
     }
 
     @Test
-    fun `Move to Right changes position plus one`() {
-        IBlock.move(Direction.LEFT)
-        assertEquals(
-            listOf(Position(3, 1), Position(3, 2), Position(3, 3), Position(3, 4)),
-            IBlock.getNeededPositions()
-        )
-    }
-
-    @Test
-    fun `Move to Left changes position plus one`() {
+    override fun `Move to Right changes column plus one`() {
         IBlock.move(Direction.RIGHT)
         assertEquals(
             listOf(Position(3, 3), Position(3, 4), Position(3, 5), Position(3, 6)),
@@ -34,17 +26,7 @@ class IBlockMoveTest {
     }
 
     @Test
-    fun `Double move to Left changes position plus two`() {
-        IBlock.move(Direction.LEFT)
-        IBlock.move(Direction.LEFT)
-        assertEquals(
-            listOf(Position(3, 0), Position(3, 1), Position(3, 2), Position(3, 3)),
-            IBlock.getNeededPositions()
-        )
-    }
-
-    @Test
-    fun `Double move to Right changes position plus two`() {
+    override fun `Double move to Right changes column plus two`() {
         IBlock.move(Direction.RIGHT)
         IBlock.move(Direction.RIGHT)
         assertEquals(
@@ -54,7 +36,26 @@ class IBlockMoveTest {
     }
 
     @Test
-    fun `Move down changes row minus one`() {
+    override fun `Move to Left changes column minus one`() {
+        IBlock.move(Direction.LEFT)
+        assertEquals(
+            listOf(Position(3, 1), Position(3, 2), Position(3, 3), Position(3, 4)),
+            IBlock.getNeededPositions()
+        )
+    }
+
+    @Test
+    override fun `Double move to Left changes column minus two`() {
+        IBlock.move(Direction.LEFT)
+        IBlock.move(Direction.LEFT)
+        assertEquals(
+            listOf(Position(3, 0), Position(3, 1), Position(3, 2), Position(3, 3)),
+            IBlock.getNeededPositions()
+        )
+    }
+
+    @Test
+    override fun `Move down changes row minus one`() {
         IBlock.move(Direction.DOWN)
         assertEquals(
             listOf(Position(4, 2), Position(4, 3), Position(4, 4), Position(4, 5)),
@@ -63,7 +64,7 @@ class IBlockMoveTest {
     }
 
     @Test
-    fun `Double move Down changes row minus two`() {
+    override fun `Double move Down changes row minus two`() {
         IBlock.move(Direction.DOWN)
         IBlock.move(Direction.DOWN)
         assertEquals(
