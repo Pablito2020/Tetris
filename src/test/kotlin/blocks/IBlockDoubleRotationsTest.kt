@@ -1,14 +1,15 @@
 package blocks
 
+import blocks.interfaces.DoubleRotation
 import movements.Position
 import movements.Rotation
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class IBlockDoubleRotationsTest {
+class IBlockDoubleRotationsTest : DoubleRotation {
 
     @Test
-    fun `Rotate block 90 degrees to right and then to left stays on same position`() {
+    override fun `Rotate block 90 degrees to right and then to left stays on same position`() {
         val iBlock = IBlock(Position(0, 0))
         iBlock.rotate(Rotation.RIGHT_90_DEGREE)
         iBlock.rotate(Rotation.LEFT_90_DEGREE)
@@ -19,7 +20,7 @@ class IBlockDoubleRotationsTest {
     }
 
     @Test
-    fun `Rotate block 90 degrees to left and then to right stays on same position`() {
+    override fun `Rotate block 90 degrees to left and then to right stays on same position`() {
         val iBlock = IBlock(Position(0, 0))
         iBlock.rotate(Rotation.LEFT_90_DEGREE)
         iBlock.rotate(Rotation.RIGHT_90_DEGREE)
@@ -30,7 +31,7 @@ class IBlockDoubleRotationsTest {
     }
 
     @Test
-    fun `Rotate block 180 degrees to left`() {
+    override fun `Rotate block 180 degrees to left`() {
         val iBlock = IBlock(Position(0, 0))
         iBlock.rotate(Rotation.LEFT_90_DEGREE)
         iBlock.rotate(Rotation.LEFT_90_DEGREE)
@@ -41,7 +42,7 @@ class IBlockDoubleRotationsTest {
     }
 
     @Test
-    fun `Rotate block 180 degrees to right`() {
+    override fun `Rotate block 180 degrees to right`() {
         val iBlock = IBlock(Position(0, 0))
         iBlock.rotate(Rotation.RIGHT_90_DEGREE)
         iBlock.rotate(Rotation.RIGHT_90_DEGREE)
