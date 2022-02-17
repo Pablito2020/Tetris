@@ -2,7 +2,7 @@ package blocks
 
 import movements.*
 
-class IBlock(private val initialPosition: Position) {
+class IBlock(private var initialPosition: Position) {
 
     private var currentTypeIBlockIndex = 0
 
@@ -27,6 +27,14 @@ class IBlock(private val initialPosition: Position) {
                 if (currentTypeIBlockIndex == 0) TYPES.size - 1 else currentTypeIBlockIndex - 1
             }
         }
+    }
+
+    fun move(direction: Direction) {
+        val x = when (direction) {
+            Direction.LEFT -> -1
+            Direction.RIGHT -> 1
+        }
+        initialPosition = Position(initialPosition.x, initialPosition.y + x)
     }
 
 }
