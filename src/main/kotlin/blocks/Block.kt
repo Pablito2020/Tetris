@@ -11,7 +11,7 @@ abstract class Block(private val FORMATS_OF_BLOCK: List<List<Position>>, private
     fun getNeededPositions(): Collection<Position> {
         val currentBlockFormat = FORMATS_OF_BLOCK[currentFormatIndex]
         return currentBlockFormat.stream()
-            .map { position -> Position(position.row + initialPosition.row, position.column + initialPosition.column) }
+            .map { position -> position.addAxes(initialPosition) }
             .toList()
     }
 
