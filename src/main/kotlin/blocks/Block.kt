@@ -25,13 +25,7 @@ abstract class Block(private val FORMATS_OF_BLOCK: List<List<Position>>, private
     }
 
     fun move(direction: Direction) {
-        val columnOffset = when (direction) {
-            Direction.LEFT -> -1
-            Direction.RIGHT -> 1
-            else -> 0
-        }
-        val rowOffset = if (direction == Direction.DOWN) 1 else 0
-        initialPosition = Position(initialPosition.row + rowOffset, initialPosition.column + columnOffset)
+        initialPosition = initialPosition.move(direction)
     }
 
 }
