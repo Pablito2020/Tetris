@@ -1,7 +1,10 @@
 class IBlock(val position: Position) {
 
     fun getNeededPositions(): List<Position> {
-        return listOf(Position(0, this.position.y), Position(0, this.position.y + 1), Position(0, this.position.y + 2), Position(0, this.position.y + 3))
+        val result = ArrayList<Position>()
+        for (i in 0..3)
+            result.add(Position(0, this.position.y + i))
+        return result
     }
 
 }
