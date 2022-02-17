@@ -3,9 +3,9 @@ import Rotation.RIGHT_90_DEGREE
 
 class IBlock(private val initialPosition: Position) {
 
-    var current_type_iblock_index = 0
+    private var current_type_iblock_index = 0
 
-    val IBLOCK_POSSIBLE_VALUES = listOf(
+    private val IBLOCK_POSSIBLE_VALUES = listOf(
         listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(1, 3)),
         listOf(Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)),
         listOf(Position(2, 0), Position(2, 1), Position(2, 2), Position(2, 3)),
