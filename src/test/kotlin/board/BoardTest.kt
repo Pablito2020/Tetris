@@ -62,4 +62,10 @@ class BoardTest {
         assertTrue(board.isEmpty(Position(0, 0)))
     }
 
+    @Test
+    fun `Accessing held position by a IBlock returns false`() {
+        board.writePosition(Cell.IBlock, Position(0,0))
+        assertFalse(board.isEmpty(Position(0, 0)))
+    }
+
 }
