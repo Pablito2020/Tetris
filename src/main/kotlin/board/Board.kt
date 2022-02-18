@@ -12,9 +12,9 @@ class Board(private val row: Int, private val column: Int) {
     }
 
     private fun initializeBoard(row: Int, column: Int) {
-        for (rows in 0..row - 1) {
+        for (rows in 0 until row) {
             val currentList: ArrayList<Cell> = ArrayList()
-            for (columns in 0..column - 1)
+            for (columns in 0 until column)
                 currentList.add(Cell.EMPTY)
             board.add(currentList)
         }
@@ -29,11 +29,11 @@ class Board(private val row: Int, private val column: Int) {
     fun isEmpty(position: Position): Boolean {
         if (!isInside(position))
             throw InvalidPositionException()
-        return board.get(position.row).get(position.column) == Cell.EMPTY
+        return board[position.row][position.column] == Cell.EMPTY
     }
 
     fun writePosition(cell: Cell, position: Position) {
-        board.get(position.row).set(position.column, cell)
+        board[position.row][position.column] = cell
     }
 
 }
