@@ -6,7 +6,7 @@ import movements.Position
 
 class Board(private val row: Int, private val column: Int) {
 
-    private val board: ArrayList<ArrayList<Cell>> = ArrayList()
+    private val board: MutableList<MutableList<Cell>> = mutableListOf()
 
     init {
         initializeBoard(this.row, this.column)
@@ -14,7 +14,7 @@ class Board(private val row: Int, private val column: Int) {
 
     private fun initializeBoard(row: Int, column: Int) {
         for (rows in 0 until row) {
-            val currentList: ArrayList<Cell> = ArrayList()
+            val currentList: MutableList<Cell> = mutableListOf()
             for (columns in 0 until column)
                 currentList.add(Cell.EMPTY)
             board.add(currentList)
