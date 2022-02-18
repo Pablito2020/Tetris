@@ -1,8 +1,10 @@
 package board
 
+import board.exceptions.InvalidPositionException
 import movements.Position
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -49,4 +51,15 @@ class BoardTest {
     fun `Correct position is inside board`(){
         assertTrue(board.isInside(Position(2, 2)))
     }
+
+    @Test
+    fun `Accessing invalid position on empty throws invalid position exception`() {
+        assertThrows<InvalidPositionException> {board.isEmpty(Position(-1, 2))  }
+    }
+
+    @Test
+    fun `Accessing valid position that is empty returns true`() {
+        assertTrue(board.isEmpty(Position(0, 0)))
+    }
+
 }
