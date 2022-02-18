@@ -1,6 +1,7 @@
 package board
 
 import board.exceptions.InvalidPositionException
+import board.exceptions.InvalidRowException
 import movements.Position
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -16,6 +17,8 @@ class BoardTest {
     fun setUp() {
         board = Board(20, 10)
     }
+
+    // isInside
 
     @Test
     fun `Out of bounds negative row position isn't inside board`(){
@@ -52,6 +55,8 @@ class BoardTest {
         assertTrue(board.isInside(Position(2, 2)))
     }
 
+    // isEmpty
+
     @Test
     fun `Accessing invalid position on empty throws invalid position exception`() {
         assertThrows<InvalidPositionException> {board.isEmpty(Position(-1, 2))  }
@@ -67,5 +72,31 @@ class BoardTest {
         board.writePosition(Cell.IBlock, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
+
+    // isFull
+
+    @Test
+    fun `Accessing invalid negative throws InvalidRowException`() {
+        assertThrows<InvalidRowException>{board.isFull(-1)}
+    }
+
+    @Test
+    fun `Accessing invalid outside row throws InvalidRowException`() {
+        assertThrows<InvalidRowException>{board.isFull(20)}
+    }
+
+    @Test
+    fun `Accessing not full board returns false`() {
+        assertFalse(board.isFull(0))
+    }
+
+    @Test
+    fun `Accessing full board returns true`() {
+        for (column in 0 until 10)
+            board.writePosition(Cell.IBlock, Position(0, column))
+        assertTrue(board.isFull(0))
+    }
+
+    // TODO: isEmpty(row), writePosition(Cell, position), clear(row)
 
 }

@@ -1,6 +1,7 @@
 package board
 
 import board.exceptions.InvalidPositionException
+import board.exceptions.InvalidRowException
 import movements.Position
 
 class Board(private val row: Int, private val column: Int) {
@@ -34,6 +35,12 @@ class Board(private val row: Int, private val column: Int) {
 
     fun writePosition(cell: Cell, position: Position) {
         board[position.row][position.column] = cell
+    }
+
+    fun isFull(row: Int): Boolean {
+        if (row < 0 || row >= this.row)
+            throw InvalidRowException()
+        return board[row].all { x -> x != Cell.EMPTY }
     }
 
 }
