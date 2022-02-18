@@ -1,13 +1,13 @@
-package blocks
+package blocks.implementation
 
-import blocks.interfaces.MoveTest
+import blocks.MoveTest
 import movements.Direction
 import movements.Position
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class IBlockMoveTest: MoveTest{
+class IBlockMoveTest: MoveTest {
 
     private lateinit var IBlock: IBlock
 

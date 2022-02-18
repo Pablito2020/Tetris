@@ -1,6 +1,7 @@
-package blocks
+package blocks.implementation
 
-import blocks.interfaces.SimpleRotation
+import blocks.Rotation
+import blocks.SimpleRotation
 import movements.Position
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals

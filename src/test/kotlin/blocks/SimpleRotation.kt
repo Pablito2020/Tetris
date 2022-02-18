@@ -1,4 +1,4 @@
-package blocks.interfaces
+package blocks
 
 import org.junit.jupiter.api.Test
 

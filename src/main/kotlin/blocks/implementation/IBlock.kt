@@ -1,8 +1,8 @@
-package blocks
+package blocks.implementation
 
 import movements.Position
 
-class IBlock(initialPosition: Position) : Block(TYPES, initialPosition)
+class IBlock(initialPosition: Position) : BlockImplementation(TYPES, initialPosition)
 
 private val TYPES = listOf(
     listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(1, 3)),
