@@ -32,4 +32,10 @@ class Board(private val row: Int, private val column: Int) {
         return board[row].all { x -> x != Cell.EMPTY }
     }
 
+    fun clear(row: Int) {
+        if (row < 0 || row >= this.row)
+            throw InvalidRowException()
+        board[row] = MutableList(this.column) { Cell.EMPTY }
+    }
+
 }

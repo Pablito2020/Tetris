@@ -134,7 +134,7 @@ class BoardTest {
         assertTrue(board.isFull(0))
     }
 
-    // TODO: writePosition(Cell, position), clear(row)
+    // writePosition
 
     @Test
     fun `Writing on invalid negative column throws InvalidPositionException`() {
@@ -167,6 +167,32 @@ class BoardTest {
         board.writePosition(Cell.I_BLOCK, Position(2, 2))
         board.writePosition(Cell.Z_BLOCK, Position(2, 2))
         assertEquals(Cell.Z_BLOCK, board.board[2][2])
+    }
+
+    // clear(row)
+
+    @Test
+    fun `Clearing on invalid negative row throws InvalidRowException`() {
+        assertThrows<InvalidRowException>({ board.clear(-1) })
+    }
+
+    @Test
+    fun `Clearing on invalid positive row throws InvalidRowException`() {
+        assertThrows<InvalidRowException>({ board.clear(20) })
+    }
+
+    @Test
+    fun `Clearing an already empty row doesn't make anything`() {
+        board.clear(2)
+        assertEquals(List(10, {Cell.EMPTY}), board.board[2])
+    }
+
+    @Test
+    fun `Clearing a non empty row clears the row`() {
+        board.writePosition(Cell.I_BLOCK, Position(2,1))
+        board.writePosition(Cell.J_BLOCK, Position(2,9))
+        board.clear(2)
+        assertEquals(List(10, {Cell.EMPTY}), board.board[2])
     }
 
 }
