@@ -14,6 +14,8 @@ class Board(private val row: Int, private val column: Int) {
 
     private fun isInsideDefaultMatrix(position: Position) = position.column < this.column && position.row < this.row
 
+    private fun isValidRow(row: Int) = row >= 0 && row < this.row
+
     fun isEmpty(position: Position): Boolean {
         if (!isInside(position))
             throw InvalidPositionException()
@@ -27,13 +29,13 @@ class Board(private val row: Int, private val column: Int) {
     }
 
     fun isFull(row: Int): Boolean {
-        if (row < 0 || row >= this.row)
+        if (!isValidRow(row))
             throw InvalidRowException()
         return board[row].all { x -> x != Cell.EMPTY }
     }
 
     fun clear(row: Int) {
-        if (row < 0 || row >= this.row)
+        if (!isValidRow(row))
             throw InvalidRowException()
         board[row] = MutableList(this.column) { Cell.EMPTY }
     }
