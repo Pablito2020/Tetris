@@ -1,5 +1,3 @@
 package board.exceptions
 
-class InvalidRowException : Throwable() {
-
-}
+class InvalidRowException : Throwable()
