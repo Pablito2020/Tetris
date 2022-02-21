@@ -69,31 +69,31 @@ class BoardTest {
 
     @Test
     fun `Accessing held position by a I Block returns false`() {
-        board.writePosition(Cell.IBlock, Position(0,0))
+        board.writePosition(Cell.I_BLOCK, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
 
     @Test
     fun `Accessing held position by a S Block returns false`() {
-        board.writePosition(Cell.SBlock, Position(0,0))
+        board.writePosition(Cell.S_BLOCK, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
 
     @Test
     fun `Accessing held position by a Z Block returns false`() {
-        board.writePosition(Cell.ZBlock, Position(0,0))
+        board.writePosition(Cell.Z_BLOCK, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
 
     @Test
     fun `Accessing held position by a L Block returns false`() {
-        board.writePosition(Cell.LBlock, Position(0,0))
+        board.writePosition(Cell.L_BLOCK, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
 
     @Test
     fun `Accessing held position by a J Block returns false`() {
-        board.writePosition(Cell.JBlock, Position(0,0))
+        board.writePosition(Cell.J_BLOCK, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
 
@@ -105,7 +105,7 @@ class BoardTest {
 
     @Test
     fun `Accessing held position by a T Block returns false`() {
-        board.writePosition(Cell.TBlock, Position(0,0))
+        board.writePosition(Cell.T_BLOCK, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
 
@@ -129,7 +129,7 @@ class BoardTest {
     @Test
     fun `Accessing full board returns true`() {
         for (column in 0 until 10)
-            board.writePosition(Cell.IBlock, Position(0, column))
+            board.writePosition(Cell.I_BLOCK, Position(0, column))
         assertTrue(board.isFull(0))
     }
 

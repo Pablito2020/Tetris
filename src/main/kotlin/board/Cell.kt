@@ -1,12 +1,12 @@
 package board
 
 enum class Cell {
-    IBlock,
+    I_BLOCK,
     EMPTY,
-    SBlock,
-    ZBlock,
-    LBlock,
-    JBlock,
+    S_BLOCK,
+    Z_BLOCK,
+    L_BLOCK,
+    J_BLOCK,
     SQUARE_BLOCK,
-    TBlock
+    T_BLOCK
 }
