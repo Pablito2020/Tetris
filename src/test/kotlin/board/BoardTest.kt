@@ -68,8 +68,44 @@ class BoardTest {
     }
 
     @Test
-    fun `Accessing held position by a IBlock returns false`() {
+    fun `Accessing held position by a I Block returns false`() {
         board.writePosition(Cell.IBlock, Position(0,0))
+        assertFalse(board.isEmpty(Position(0, 0)))
+    }
+
+    @Test
+    fun `Accessing held position by a S Block returns false`() {
+        board.writePosition(Cell.SBlock, Position(0,0))
+        assertFalse(board.isEmpty(Position(0, 0)))
+    }
+
+    @Test
+    fun `Accessing held position by a Z Block returns false`() {
+        board.writePosition(Cell.ZBlock, Position(0,0))
+        assertFalse(board.isEmpty(Position(0, 0)))
+    }
+
+    @Test
+    fun `Accessing held position by a L Block returns false`() {
+        board.writePosition(Cell.LBlock, Position(0,0))
+        assertFalse(board.isEmpty(Position(0, 0)))
+    }
+
+    @Test
+    fun `Accessing held position by a J Block returns false`() {
+        board.writePosition(Cell.JBlock, Position(0,0))
+        assertFalse(board.isEmpty(Position(0, 0)))
+    }
+
+    @Test
+    fun `Accessing held position by a Square Block returns false`() {
+        board.writePosition(Cell.SQUARE_BLOCK, Position(0,0))
+        assertFalse(board.isEmpty(Position(0, 0)))
+    }
+
+    @Test
+    fun `Accessing held position by a T Block returns false`() {
+        board.writePosition(Cell.TBlock, Position(0,0))
         assertFalse(board.isEmpty(Position(0, 0)))
     }
 
