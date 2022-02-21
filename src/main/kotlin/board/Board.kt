@@ -14,10 +14,10 @@ class Board(private val row: Int, private val column: Int) {
 
     private fun initializeBoard(row: Int, column: Int) {
         for (rows in 0 until row) {
-            val currentList: MutableList<Cell> = mutableListOf()
+            val currentRow: MutableList<Cell> = mutableListOf()
             for (columns in 0 until column)
-                currentList.add(Cell.EMPTY)
-            board.add(currentList)
+                currentRow.add(Cell.EMPTY)
+            board.add(currentRow)
         }
     }
 
