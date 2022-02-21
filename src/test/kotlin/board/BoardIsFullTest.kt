@@ -2,20 +2,12 @@ package board
 
 import board.exceptions.InvalidRowException
 import movements.Position
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class BoardIsFullTest {
-
-    private lateinit var board: Board
-
-    @BeforeEach
-    fun setUp() {
-        board = Board(20, 10)
-    }
+class BoardIsFullTest : BoardTest() {
 
     @Test
     fun `Accessing invalid negative throws InvalidRowException`() {

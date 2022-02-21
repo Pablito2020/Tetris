@@ -2,20 +2,12 @@ package board
 
 import board.exceptions.InvalidPositionException
 import movements.Position
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class BoardIsEmptyTest {
-
-    private lateinit var board: Board
-
-    @BeforeEach
-    fun setUp() {
-        board = Board(20, 10)
-    }
+class BoardIsEmptyTest : BoardTest() {
 
     @Test
     fun `Accessing invalid position on empty throws invalid position exception`() {

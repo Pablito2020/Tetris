@@ -2,19 +2,11 @@ package board
 
 import board.exceptions.InvalidPositionException
 import movements.Position
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 
-class BoardWritePositionTest {
-
-    private lateinit var board: Board
-
-    @BeforeEach
-    fun setUp() {
-        board = Board(20, 10)
-    }
+class BoardWritePositionTest : BoardTest() {
 
     @Test
     fun `Writing on invalid negative column throws InvalidPositionException`() {

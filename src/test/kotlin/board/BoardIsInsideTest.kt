@@ -1,19 +1,11 @@
 package board
 
 import movements.Position
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class BoardIsInsideTest {
-
-    private lateinit var board: Board
-
-    @BeforeEach
-    fun setUp() {
-        board = Board(20, 10)
-    }
+class BoardIsInsideTest : BoardTest() {
 
     @Test
     fun `Out of bounds negative row position isn't inside board`() {
