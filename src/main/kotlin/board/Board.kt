@@ -6,20 +6,7 @@ import movements.Position
 
 class Board(private val row: Int, private val column: Int) {
 
-    private val board: MutableList<MutableList<Cell>> = mutableListOf()
-
-    init {
-        initializeBoard(this.row, this.column)
-    }
-
-    private fun initializeBoard(row: Int, column: Int) {
-        for (rows in 0 until row) {
-            val currentRow: MutableList<Cell> = mutableListOf()
-            for (columns in 0 until column)
-                currentRow.add(Cell.EMPTY)
-            board.add(currentRow)
-        }
-    }
+    private val board = MutableList(row) { MutableList(column) { Cell.EMPTY } }
 
     fun isInside(position: Position) = hasPositiveRowsAndColumns(position) && isInsideDefaultMatrix(position)
 
