@@ -64,7 +64,7 @@ class BoardTest {
 
     @Test
     fun `Accessing valid position that is empty returns true`() {
-        assertTrue(board.isEmpty(Position(0, 0)))
+        assertTrue(board.isEmpty(Position(2, 2)))
     }
 
     @Test
