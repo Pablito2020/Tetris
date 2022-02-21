@@ -6,7 +6,7 @@ import movements.Position
 
 class Board(private val row: Int, private val column: Int) {
 
-    private val board = MutableList(row) { MutableList(column) { Cell.EMPTY } }
+    val board = MutableList(row) { MutableList(column) { Cell.EMPTY } }
 
     fun isInside(position: Position) = hasPositiveRowsAndColumns(position) && isInsideDefaultMatrix(position)
 
@@ -21,6 +21,8 @@ class Board(private val row: Int, private val column: Int) {
     }
 
     fun writePosition(cell: Cell, position: Position) {
+        if (!isInside(position))
+            throw InvalidPositionException()
         board[position.row][position.column] = cell
     }
 
