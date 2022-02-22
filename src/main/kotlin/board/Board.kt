@@ -8,13 +8,7 @@ class Board(private val row: Int, private val column: Int) {
 
     val board = MutableList(row) { MutableList(column) { Cell.EMPTY } }
 
-    fun isInside(position: Position) = hasPositiveRowsAndColumns(position) && isInsideDefaultMatrix(position)
-
-    private fun hasPositiveRowsAndColumns(position: Position) = position.row >= 0 && position.column >= 0
-
-    private fun isInsideDefaultMatrix(position: Position) = position.column < this.column && position.row < this.row
-
-    private fun isValidRow(row: Int) = row >= 0 && row < this.row
+    fun isInside(position: Position) = isValidRow(position.row) && isValidColumn(position.column)
 
     fun isEmpty(position: Position): Boolean {
         if (!isInside(position))
@@ -39,5 +33,9 @@ class Board(private val row: Int, private val column: Int) {
             throw InvalidRowException()
         board[row] = MutableList(this.column) { Cell.EMPTY }
     }
+
+    private fun isValidRow(row: Int) = row >= 0 && row < this.row
+
+    private fun isValidColumn(column: Int) = column >= 0 && column < this.column
 
 }
