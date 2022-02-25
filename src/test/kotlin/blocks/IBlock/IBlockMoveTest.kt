@@ -1,6 +1,7 @@
-package blocks.implementation
+package blocks.IBlock
 
 import blocks.MoveTest
+import blocks.implementation.IBlock
 import movements.Direction
 import movements.Position
 import org.junit.jupiter.api.BeforeEach

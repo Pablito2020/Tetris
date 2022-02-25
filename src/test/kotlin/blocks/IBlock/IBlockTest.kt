@@ -1,4 +1,4 @@
-package blocks.implementation
+package blocks.IBlock
 
 import blocks.implementation.IBlock
 import movements.Position

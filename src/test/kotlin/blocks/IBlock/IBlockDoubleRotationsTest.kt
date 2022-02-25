@@ -1,7 +1,8 @@
-package blocks.implementation
+package blocks.IBlock
 
 import blocks.Rotation
 import blocks.DoubleRotation
+import blocks.implementation.IBlock
 import movements.Position
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals

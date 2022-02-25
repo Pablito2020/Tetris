@@ -1,5 +1,6 @@
-package blocks.implementation
+package blocks.SBlock
 
+import blocks.implementation.SBlock
 import movements.Position
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
