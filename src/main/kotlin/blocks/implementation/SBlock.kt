@@ -7,8 +7,10 @@ import movements.Position
 
 class SBlock(private val position: Position) : Block {
 
-    override fun getNeededPositions(): Collection<Position> {
-        return listOf(Position(position.row + 0, position.column + 1), Position(position.row + 0, position.column + 2), Position(position.row + 1, position.column + 0), Position(position.row + 1, position.column + 1))
+    private val positions = listOf(Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1))
+
+    override fun getNeededPositions(): Collection<Position> = positions.map { p ->
+        Position(p.row + position.row, p.column + position.column)
     }
 
     override fun rotate(degree: Rotation) {
