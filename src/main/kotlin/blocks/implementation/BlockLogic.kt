@@ -5,8 +5,10 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-abstract class BlockImplementation(private val FORMATS_OF_BLOCK: List<List<Position>>, private var initialPosition: Position):
-    Block {
+internal class BlockLogic(
+    private val FORMATS_OF_BLOCK: List<List<Position>>,
+    private var initialPosition: Position
+) : Block {
 
     private var currentFormatIndex = 0
 
