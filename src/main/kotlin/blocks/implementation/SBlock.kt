@@ -5,7 +5,7 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-class SBlock(private val position: Position) : Block {
+class SBlock(private var position: Position) : Block {
 
     private val positions = listOf(Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1))
 
@@ -18,7 +18,7 @@ class SBlock(private val position: Position) : Block {
     }
 
     override fun move(direction: Direction) {
-        TODO("Not yet implemented")
+        position = position.move(direction)
     }
 
 }
