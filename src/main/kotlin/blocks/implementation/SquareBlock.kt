@@ -15,9 +15,7 @@ class SquareBlock(private var initialPosition: Position) : Block {
         return positions.map { position -> position.addAxes(initialPosition) }
     }
 
-    override fun rotate(degree: Rotation) {
-        TODO("Not yet implemented")
-    }
+    override fun rotate(degree: Rotation) {}
 
     override fun move(direction: Direction) {
         initialPosition = initialPosition.move(direction)
