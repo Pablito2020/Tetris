@@ -5,7 +5,7 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-class ZBlock(private val initialPosition: Position): Block {
+class ZBlock(private var initialPosition: Position): Block {
 
     private val positions = listOf(Position(0,0), Position(0,1), Position(1,1), Position(1,2))
 
@@ -18,7 +18,7 @@ class ZBlock(private val initialPosition: Position): Block {
     }
 
     override fun move(direction: Direction) {
-        TODO("Not yet implemented")
+        initialPosition = initialPosition.move(direction)
     }
 
 }
