@@ -5,41 +5,21 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-class ZBlock(private var initialPosition: Position): Block {
+internal val zBlockPositions: List<List<Position>> = listOf(
+    listOf(Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)),
+    listOf(Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)),
+    listOf(Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)),
+    listOf(Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0))
+)
 
-    private val positions = listOf(Position(0,0), Position(0,1), Position(1,1), Position(1,2))
-    private val rightPositions = listOf(Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1))
-    private val leftPositions = listOf(Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0))
-    private val middlePosition = listOf(Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2))
-    private var pos = positions
+class ZBlock(initialPosition: Position) : Block {
 
-    override fun getNeededPositions(): Collection<Position> {
-        return pos.map { position -> position.addAxes(initialPosition) }
-    }
+    private val blockLogic = BlockLogic(zBlockPositions, initialPosition)
 
-    override fun rotate(degree: Rotation) {
-        pos = when(degree)  {
-            Rotation.LEFT_90_DEGREE -> {
-                if (pos == rightPositions)
-                    positions
-                else if (pos == leftPositions)
-                    middlePosition
-                else
-                    leftPositions
-            }
-            Rotation.RIGHT_90_DEGREE -> {
-                if (pos == leftPositions)
-                    positions
-                else if (pos == rightPositions)
-                    middlePosition
-                else
-                    rightPositions
-            }
-        }
-    }
+    override fun getNeededPositions(): Collection<Position> = blockLogic.getNeededPositions()
 
-    override fun move(direction: Direction) {
-        initialPosition = initialPosition.move(direction)
-    }
+    override fun rotate(degree: Rotation) = blockLogic.rotate(degree)
+
+    override fun move(direction: Direction) = blockLogic.move(direction)
 
 }
