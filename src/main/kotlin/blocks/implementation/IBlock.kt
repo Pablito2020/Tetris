@@ -5,7 +5,7 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-internal val TYPES = listOf(
+internal val iBlockPositions = listOf(
     listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(1, 3)),
     listOf(Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)),
     listOf(Position(2, 0), Position(2, 1), Position(2, 2), Position(2, 3)),
@@ -14,7 +14,7 @@ internal val TYPES = listOf(
 
 class IBlock(initialPosition: Position) : Block {
 
-    private val blockImplementation = BlockLogic(TYPES, initialPosition)
+    private val blockImplementation = BlockLogic(iBlockPositions, initialPosition)
 
     override fun getNeededPositions(): Collection<Position> = blockImplementation.getNeededPositions()
 

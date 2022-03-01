@@ -5,13 +5,13 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-internal val positions = listOf(
+internal val squareBlockPosition = listOf(
     Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)
 )
 
 class SquareBlock(initialPosition: Position) : Block {
 
-    private val logic = BlockLogic(listOf(positions), initialPosition)
+    private val logic = BlockLogic(listOf(squareBlockPosition), initialPosition)
 
     override fun getNeededPositions(): Collection<Position> = logic.getNeededPositions()
 
