@@ -56,7 +56,7 @@ class SquareBlockMoveTest : MoveTest {
     }
 
     @Test
-    override fun `Move down changes row minus one`() {
+    override fun `Move down changes row plus one`() {
         squareBlock.move(Direction.DOWN)
         assertEquals(
             listOf(Position(3, 2), Position(3, 3), Position(4, 2), Position(4, 3)),
@@ -65,7 +65,7 @@ class SquareBlockMoveTest : MoveTest {
     }
 
     @Test
-    override fun `Double move Down changes row minus two`() {
+    override fun `Double move Down changes row plus two`() {
         squareBlock.move(Direction.DOWN)
         squareBlock.move(Direction.DOWN)
         assertEquals(

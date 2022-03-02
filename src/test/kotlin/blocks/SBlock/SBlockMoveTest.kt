@@ -57,7 +57,7 @@ class SBlockMoveTest : MoveTest {
     }
 
     @Test
-    override fun `Move down changes row minus one`() {
+    override fun `Move down changes row plus one`() {
         sBlock.move(Direction.DOWN)
         assertEquals(
             listOf(Position(3, 3), Position(3, 4), Position(4, 2), Position(4, 3)),
@@ -65,7 +65,7 @@ class SBlockMoveTest : MoveTest {
         )
     }
 
-    override fun `Double move Down changes row minus two`() {
+    override fun `Double move Down changes row plus two`() {
         sBlock.move(Direction.DOWN)
         sBlock.move(Direction.DOWN)
         assertEquals(

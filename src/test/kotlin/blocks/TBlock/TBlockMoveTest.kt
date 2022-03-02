@@ -58,7 +58,7 @@ class TBlockMoveTest : MoveTest {
     }
 
     @Test
-    override fun `Move down changes row minus one`() {
+    override fun `Move down changes row plus one`() {
         tBlock.move(Direction.DOWN)
         assertEquals(
             listOf(Position(3, 3), Position(4, 2), Position(4, 3), Position(4, 4)),
@@ -67,7 +67,7 @@ class TBlockMoveTest : MoveTest {
     }
 
     @Test
-    override fun `Double move Down changes row minus two`() {
+    override fun `Double move Down changes row plus two`() {
         tBlock.move(Direction.DOWN)
         tBlock.move(Direction.DOWN)
         assertEquals(

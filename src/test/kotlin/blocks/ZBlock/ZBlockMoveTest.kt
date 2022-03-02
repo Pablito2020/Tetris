@@ -57,7 +57,7 @@ class ZBlockMoveTest : MoveTest {
     }
 
     @Test
-    override fun `Move down changes row minus one`() {
+    override fun `Move down changes row plus one`() {
         zBlock.move(Direction.DOWN)
         assertEquals(
             listOf(Position(3, 2), Position(3, 3), Position(4, 3), Position(4, 4)),
@@ -66,7 +66,7 @@ class ZBlockMoveTest : MoveTest {
     }
 
     @Test
-    override fun `Double move Down changes row minus two`() {
+    override fun `Double move Down changes row plus two`() {
         zBlock.move(Direction.DOWN)
         zBlock.move(Direction.DOWN)
         assertEquals(
