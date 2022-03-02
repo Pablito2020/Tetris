@@ -5,16 +5,22 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-class TBlock(private var initialPosition: Position): Block {
+class TBlock(private var initialPosition: Position) : Block {
 
-    val positions = listOf(Position(0, 1), Position(1, 0), Position(1,1), Position(1, 2))
+    val positions = listOf(Position(0, 1), Position(1, 0), Position(1, 1), Position(1, 2))
+    val rightPositions = listOf(Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 1))
+    val leftPositions = listOf(Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 1))
+    var currentPosition = positions
 
     override fun getNeededPositions(): Collection<Position> {
-        return positions.map({pos -> pos.addAxes(initialPosition)})
+        return currentPosition.map({ pos -> pos.addAxes(initialPosition) })
     }
 
     override fun rotate(degree: Rotation) {
-        TODO("Not yet implemented")
+        currentPosition = when(degree) {
+            Rotation.RIGHT_90_DEGREE -> rightPositions
+            Rotation.LEFT_90_DEGREE -> leftPositions
+        }
     }
 
     override fun move(direction: Direction) {
