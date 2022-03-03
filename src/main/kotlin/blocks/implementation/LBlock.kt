@@ -5,7 +5,7 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-class LBlock(private val initialPosition: Position): Block {
+class LBlock(private var initialPosition: Position): Block {
 
     val positions = listOf(Position(0, 0), Position(1, 0), Position(2, 0), Position(2,1))
 
@@ -18,7 +18,7 @@ class LBlock(private val initialPosition: Position): Block {
     }
 
     override fun move(direction: Direction) {
-        TODO("Not yet implemented")
+        initialPosition = initialPosition.move(direction)
     }
 
 }
