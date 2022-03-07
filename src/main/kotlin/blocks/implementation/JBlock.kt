@@ -5,7 +5,7 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-class JBlock(private val initialPosition: Position) : Block {
+class JBlock(private var initialPosition: Position) : Block {
 
     private val initialState = listOf(Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2))
 
@@ -18,7 +18,7 @@ class JBlock(private val initialPosition: Position) : Block {
     }
 
     override fun move(direction: Direction) {
-        TODO("Not yet implemented")
+        initialPosition = initialPosition.move(direction)
     }
 
 }
