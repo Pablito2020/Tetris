@@ -5,41 +5,21 @@ import blocks.Rotation
 import movements.Direction
 import movements.Position
 
-class JBlock(private var initialPosition: Position) : Block {
+internal val jBlockPositions = listOf(
+    listOf(Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2)),
+    listOf(Position(0, 1), Position(0, 2), Position(1, 1), Position(2, 1)),
+    listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 2)),
+    listOf(Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1))
+)
 
-    private val initialState = listOf(Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2))
-    private val rightState = listOf(Position(0, 1), Position(0, 2), Position(1, 1), Position(2, 1))
-    private val leftState = listOf(Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1))
-    private val middleState = listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 2))
-    private var state = initialState
+class JBlock(initialPosition: Position) : Block {
 
-    override fun getNeededPositions(): Collection<Position> {
-        return state.map { position -> position.addAxes(initialPosition) }
-    }
+    private val logic = BlockLogic(jBlockPositions, initialPosition)
 
-    override fun rotate(degree: Rotation) {
-        state = when (degree) {
-            Rotation.RIGHT_90_DEGREE -> {
-                if (state == leftState)
-                    initialState
-                else if (state == rightState)
-                    middleState
-                else
-                    rightState
-            }
-            Rotation.LEFT_90_DEGREE -> {
-                if (state == rightState)
-                    initialState
-                else if (state == leftState)
-                    middleState
-                else
-                    leftState
-            }
-        }
-    }
+    override fun getNeededPositions(): Collection<Position> = logic.getNeededPositions()
 
-    override fun move(direction: Direction) {
-        initialPosition = initialPosition.move(direction)
-    }
+    override fun rotate(degree: Rotation) = logic.rotate(degree)
+
+    override fun move(direction: Direction) = logic.move(direction)
 
 }
