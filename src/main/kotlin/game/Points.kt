@@ -1,3 +1,3 @@
 package game
 
-class Points(value: Int)
+data class Points(val value: Int)
