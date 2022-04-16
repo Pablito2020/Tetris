@@ -2,6 +2,7 @@ package blocks.implementation
 
 import blocks.Block
 import blocks.Rotation
+import board.Cell
 import movements.Direction
 import movements.Position
 
@@ -21,5 +22,8 @@ class IBlock(initialPosition: Position) : Block {
     override fun rotate(degree: Rotation) = blockImplementation.rotate(degree)
 
     override fun move(direction: Direction) = blockImplementation.move(direction)
+    override fun getCell(): Cell {
+        return Cell.I_BLOCK
+    }
 
 }

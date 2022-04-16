@@ -2,6 +2,7 @@ package blocks.implementation
 
 import blocks.Block
 import blocks.Rotation
+import board.Cell
 import movements.Direction
 import movements.Position
 
@@ -28,6 +29,10 @@ internal class BlockLogic(
 
     override fun move(direction: Direction) {
         initialPosition = initialPosition.move(direction)
+    }
+
+    override fun getCell(): Cell {
+        throw Error("Subclass needed")
     }
 
 }

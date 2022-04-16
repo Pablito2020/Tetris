@@ -2,6 +2,7 @@ package blocks.implementation
 
 import blocks.Block
 import blocks.Rotation
+import board.Cell
 import movements.Direction
 import movements.Position
 
@@ -21,5 +22,8 @@ class TBlock(initialPosition: Position) : Block {
     override fun rotate(degree: Rotation) = logic.rotate(degree)
 
     override fun move(direction: Direction) = logic.move(direction)
+    override fun getCell(): Cell {
+        return Cell.T_BLOCK
+    }
 
 }

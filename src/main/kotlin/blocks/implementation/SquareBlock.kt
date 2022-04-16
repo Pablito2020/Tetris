@@ -2,6 +2,7 @@ package blocks.implementation
 
 import blocks.Block
 import blocks.Rotation
+import board.Cell
 import movements.Direction
 import movements.Position
 
@@ -18,5 +19,8 @@ class SquareBlock(initialPosition: Position) : Block {
     override fun rotate(degree: Rotation) {}
 
     override fun move(direction: Direction) = logic.move(direction)
+    override fun getCell(): Cell {
+        return Cell.SQUARE_BLOCK
+    }
 
 }
