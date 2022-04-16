@@ -31,8 +31,6 @@ internal class BlockLogic(
         initialPosition = initialPosition.move(direction)
     }
 
-    override fun getCell(): Cell {
-        throw Error("Subclass needed")
-    }
+    override fun getCell() = throw Error("Subclass needed")
 
 }

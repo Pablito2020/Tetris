@@ -22,8 +22,6 @@ class LBlock(initialPosition: Position) : Block {
     override fun rotate(degree: Rotation) = logic.rotate(degree)
 
     override fun move(direction: Direction) = logic.move(direction)
-    override fun getCell(): Cell {
-        return Cell.L_BLOCK
-    }
+    override fun getCell() = Cell.L_BLOCK
 
 }

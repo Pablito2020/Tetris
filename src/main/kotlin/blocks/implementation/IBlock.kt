@@ -22,8 +22,6 @@ class IBlock(initialPosition: Position) : Block {
     override fun rotate(degree: Rotation) = blockImplementation.rotate(degree)
 
     override fun move(direction: Direction) = blockImplementation.move(direction)
-    override fun getCell(): Cell {
-        return Cell.I_BLOCK
-    }
+    override fun getCell(): Cell = Cell.I_BLOCK
 
 }
