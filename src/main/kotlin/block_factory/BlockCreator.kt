@@ -1,4 +1,4 @@
-package game
+package block_factory
 
 import blocks.Block
 

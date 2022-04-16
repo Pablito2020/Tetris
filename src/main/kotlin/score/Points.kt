@@ -1,3 +1,3 @@
-package game
+package score
 
 data class Points(val value: Int)

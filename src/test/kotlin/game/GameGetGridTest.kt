@@ -1,10 +1,13 @@
 package game
 
+import block_factory.BlockCreator
 import blocks.implementation.IBlock
 import board.Cell
 import movements.Position
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import score.Points
+import score.ScoreCalculator
 
 class GameGetGridTest {
 
