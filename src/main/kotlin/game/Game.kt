@@ -2,6 +2,7 @@ package game
 
 import block_factory.BlockCreator
 import blocks.Block
+import blocks.Rotation
 import board.Board
 import game.exceptions.BlockCanMoveDownException
 import game.exceptions.EmptyCurrentBlockException
@@ -33,6 +34,12 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
             block!!.move(direction)
     }
 
+    fun rotateBlock(rotation: Rotation) {
+        assertBlockNotNull()
+        if (isValidBlockPosition(rotation))
+            block!!.rotate(rotation)
+    }
+
     fun blockCanMoveDownNext(): Boolean {
         assertBlockNotNull()
         return isValidBlockPosition(Direction.DOWN)
@@ -61,5 +68,13 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         block!!.move(direction.opposite())
         return canMove
     }
+
+    private fun isValidBlockPosition(rotation: Rotation): Boolean {
+        block!!.rotate(rotation)
+        val canMove = block!!.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
+        block!!.rotate(rotation.opposite())
+        return canMove
+    }
+
 
 }
