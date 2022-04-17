@@ -4,6 +4,8 @@ import block_factory.BlockCreator
 import blocks.Block
 import board.Board
 import board.Cell
+import game.exceptions.EmptyCurrentBlockException
+import movements.Direction
 import score.ScoreCalculator
 
 internal const val GAME_COLUMNS = 10
@@ -37,5 +39,12 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
     fun getNextBlock() {
         block = creator.getBlock()
     }
+
+    fun moveBlock(direction: Direction) {
+        if (block == null)
+            throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
+        block!!.move(direction)
+    }
+
 
 }
