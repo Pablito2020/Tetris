@@ -1,3 +1,3 @@
 package board.exceptions
 
-class InvalidRowException : Throwable()
+class InvalidRowException(message: String = "default") : Throwable(message)

@@ -16,6 +16,20 @@ class Board(private val row: Int, private val column: Int) {
         return board[position.row][position.column] == Cell.EMPTY
     }
 
+    fun redoBoardWithClearedCells() {
+        var counterFull = 0
+        for (currentRow in row - 1 downTo 0) {
+            if (isFull(currentRow)) {
+                counterFull += 1
+                clear(currentRow)
+            } else {
+                val temp = board[currentRow].toMutableList()
+                clear(currentRow)
+                board[currentRow + counterFull] = temp
+            }
+        }
+    }
+
     fun writePosition(cell: Cell, position: Position) {
         if (!isInside(position))
             throw InvalidPositionException()
@@ -24,7 +38,7 @@ class Board(private val row: Int, private val column: Int) {
 
     fun isFull(row: Int): Boolean {
         if (!isValidRow(row))
-            throw InvalidRowException()
+            throw InvalidRowException("row: $row")
         return board[row].all { x -> x != Cell.EMPTY }
     }
 
