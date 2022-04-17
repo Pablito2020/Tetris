@@ -4,6 +4,7 @@ import block_factory.BlockCreator
 import blocks.Block
 import board.Board
 import board.Cell
+import game.exceptions.BlockCanMoveDownException
 import game.exceptions.EmptyCurrentBlockException
 import movements.Direction
 import movements.Position
@@ -51,9 +52,34 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         if (block == null)
             throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
         block!!.move(Direction.DOWN)
-        val canMoveDownMore = block!!.getNeededPositions().all { board.isInside(it.addAxes(Position(GAME_CELL_BUFFER, 0))) && board.isEmpty(it.addAxes(Position(GAME_CELL_BUFFER, 0))) }
+        val canMoveDownMore = block!!.getNeededPositions().all {
+            board.isInside(it.addAxes(Position(GAME_CELL_BUFFER, 0))) && board.isEmpty(
+                it.addAxes(
+                    Position(
+                        GAME_CELL_BUFFER,
+                        0
+                    )
+                )
+            )
+        }
         block!!.move(Direction.UP)
         return canMoveDownMore
+    }
+
+    fun writeBlockToBoard() {
+        if (block == null)
+            throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
+        if (blockCanMoveDownNext())
+            throw BlockCanMoveDownException("Block can move down next, so it's impossible to write it to the board")
+        block!!.getNeededPositions().forEach {
+            board.writePosition(
+                block!!.getCell(), it.addAxes(
+                    Position(
+                        GAME_CELL_BUFFER, 0
+                    )
+                )
+            )
+        }
     }
 
 }
