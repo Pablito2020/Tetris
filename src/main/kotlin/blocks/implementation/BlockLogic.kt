@@ -1,8 +1,8 @@
 package blocks.implementation
 
-import movements.Rotation
 import movements.Direction
 import movements.Position
+import movements.Rotation
 
 internal class BlockLogic(
     private val FORMATS_OF_BLOCK: List<List<Position>>,
@@ -28,6 +28,5 @@ internal class BlockLogic(
     fun move(direction: Direction) {
         initialPosition = initialPosition.move(direction)
     }
-
 
 }

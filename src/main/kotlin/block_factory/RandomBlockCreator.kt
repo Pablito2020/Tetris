@@ -6,10 +6,11 @@ import game.GAME_COLUMNS
 import movements.Position
 
 data class BlockWrapper(val block: Block, val type: BlockType)
+
 internal const val INITIAL_ROW_BLOCK = 0
 internal const val INITIAL_COLUMN_BLOCK = (GAME_COLUMNS / 2) - 2
 
-class RandomBlockCreator: BlockCreator {
+class RandomBlockCreator : BlockCreator {
 
     private var actualBlock: BlockWrapper = getNewBlock()
     private var nextBlock: BlockWrapper = getNewBlock()

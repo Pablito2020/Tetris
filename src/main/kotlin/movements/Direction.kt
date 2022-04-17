@@ -1,6 +1,6 @@
 package movements
 
-enum class Direction: Opposite<Direction> {
+enum class Direction : Opposite<Direction> {
     LEFT,
     RIGHT,
     DOWN,

@@ -1,10 +1,10 @@
 package blocks.implementation
 
 import blocks.Block
-import movements.Rotation
 import board.Cell
 import movements.Direction
 import movements.Position
+import movements.Rotation
 
 internal val sBlockPositions = listOf(
     listOf(Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1)),

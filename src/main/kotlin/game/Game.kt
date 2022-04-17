@@ -15,7 +15,7 @@ internal const val GAME_COLUMNS = 10
 internal const val GAME_ROWS = 20
 internal const val DEFAULT_POINTS = 0
 
-class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculator) {
+class Game(private val creator: BlockCreator, private val scoreCalculator: ScoreCalculator) {
 
     private val board: Board = Board(GAME_ROWS, GAME_COLUMNS)
     private var block: Block? = null
@@ -94,7 +94,7 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
 
     private fun hasCompletedRows() = (0 until GAME_ROWS).any { row -> board.isFull(row) }
 
-    private fun getCompletedRows() = (0 until GAME_ROWS).filter { row -> board.isFull(row)}.count()
+    private fun getCompletedRows() = (0 until GAME_ROWS).count { row -> board.isFull(row) }
 
     private fun updateScore() {
         points = points.add(scoreCalculator.getScore(getCompletedRows()))
