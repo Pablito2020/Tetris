@@ -19,7 +19,6 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
     private val board: Board = Board(GAME_ROWS + GAME_CELL_BUFFER, GAME_COLUMNS)
     private var block: Block? = null
 
-    // TODO: Need to be tested with different block types already saved on the board
     fun getGrid(): List<List<GameCell>> {
         val result = getMutableGrid()
         if (block != null)
