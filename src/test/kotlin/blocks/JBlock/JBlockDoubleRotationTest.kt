@@ -1,6 +1,6 @@
 package blocks.JBlock
 
-import blocks.DoubleRotation
+import blocks.DoubleRotationTest
 import movements.Rotation
 import blocks.implementation.JBlock
 import movements.Position
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class JBlockDoubleRotationTest : DoubleRotation {
+class JBlockDoubleRotationTest : DoubleRotationTest {
 
     private lateinit var jBlock: JBlock
 

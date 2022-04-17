@@ -6,15 +6,16 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-internal const val ROW = 20
-internal const val COLUMN = 10
 
 class BoardRedoWithClearedCells: BoardTest() {
 
+    private val ROW = 20
+    private val COLUMN = 10
     private lateinit var emptyResult: MutableList<MutableList<Cell>>
 
     @BeforeEach
     fun setUpEmptyResult() {
+        super.setUp()
         emptyResult = MutableList(ROW) { MutableList(COLUMN) { Cell.EMPTY } }
     }
 

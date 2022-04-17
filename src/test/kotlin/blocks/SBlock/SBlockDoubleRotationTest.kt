@@ -1,7 +1,7 @@
 package blocks.SBlock
 
 import blocks.Block
-import blocks.DoubleRotation
+import blocks.DoubleRotationTest
 import movements.Rotation
 import blocks.implementation.SBlock
 import movements.Position
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class SBlockDoubleRotationTest : DoubleRotation {
+class SBlockDoubleRotationTest : DoubleRotationTest {
 
     lateinit var sBlock: Block
 

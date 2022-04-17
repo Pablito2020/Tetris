@@ -1,13 +1,13 @@
 package blocks.ZBlock
 
 import movements.Rotation
-import blocks.SimpleRotation
+import blocks.SimpleRotationTest
 import blocks.implementation.ZBlock
 import movements.Position
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class ZBlockSimpleRotation : SimpleRotation {
+class ZBlockSimpleRotationTest : SimpleRotationTest {
 
     @Test
     override fun `Rotate block 90 degrees to right changed needed positions from (0,0)`() {

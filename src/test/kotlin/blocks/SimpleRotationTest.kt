@@ -2,7 +2,7 @@ package blocks
 
 import org.junit.jupiter.api.Test
 
-interface SimpleRotation {
+interface SimpleRotationTest {
 
     @Test
     fun `Rotate block 90 degrees to right changed needed positions from (0,0)`()

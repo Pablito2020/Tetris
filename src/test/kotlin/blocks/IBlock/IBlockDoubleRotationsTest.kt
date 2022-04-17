@@ -1,13 +1,13 @@
 package blocks.IBlock
 
 import movements.Rotation
-import blocks.DoubleRotation
+import blocks.DoubleRotationTest
 import blocks.implementation.IBlock
 import movements.Position
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class IBlockDoubleRotationsTest : DoubleRotation {
+class IBlockDoubleRotationsTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 90 degrees to right and then to left stays on same position`() {

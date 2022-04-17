@@ -23,11 +23,11 @@ class RotationBlockCollisionCellTest {
     private val blockCreatorMock = object : BlockCreator {
         var counter = 0
         override fun getBlock(): Block {
-            if (counter == 2) {
-                return IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
+            return if (counter == 2) {
+                IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
             } else {
                 counter += 1
-                return SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1))
+                SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1))
             }
         }
         override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
@@ -39,12 +39,12 @@ class RotationBlockCollisionCellTest {
             override fun getScore(cleanedRows: Int) = Points(0)
         })
         // generate, move squares blocks down and save it to the board
-        for (i in 0 until 2) {
+        (0 until 2).forEach { _ ->
             game.getNextBlock()
-            for (i in 0 until GAME_ROWS)
+            (0 until GAME_ROWS).forEach { _ ->
                 game.moveBlock(Direction.DOWN)
+            }
             game.writeBlockToBoard()
-            // generate I block next
         }
         game.getNextBlock()
     }

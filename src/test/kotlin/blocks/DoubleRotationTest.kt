@@ -2,7 +2,7 @@ package blocks
 
 import org.junit.jupiter.api.Test
 
-interface DoubleRotation {
+interface DoubleRotationTest {
 
     @Test
     fun `Rotate block 90 degrees to right and then to left stays on same position`()

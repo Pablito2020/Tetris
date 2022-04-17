@@ -1,7 +1,7 @@
 package blocks.ZBlock
 
 import blocks.Block
-import blocks.DoubleRotation
+import blocks.DoubleRotationTest
 import movements.Rotation
 import blocks.implementation.ZBlock
 import movements.Position
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class ZBlockDoubleRotation : DoubleRotation {
+class ZBlockDoubleRotationTest : DoubleRotationTest {
 
     private lateinit var zBlock: Block
 
