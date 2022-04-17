@@ -1,6 +1,7 @@
 package game
 
 import block_factory.BlockCreator
+import block_factory.BlockType
 import blocks.Block
 import movements.Rotation
 import blocks.implementation.IBlock
@@ -29,6 +30,7 @@ class RotationBlockCollisionCellTest {
                 return SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1))
             }
         }
+        override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
     }
 
     @BeforeEach

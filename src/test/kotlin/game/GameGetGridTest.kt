@@ -1,6 +1,7 @@
 package game
 
 import block_factory.BlockCreator
+import block_factory.BlockType
 import blocks.implementation.IBlock
 import board.Cell
 import movements.Position
@@ -18,6 +19,7 @@ class GameGetGridTest {
     fun setUp() {
         game = Game(object : BlockCreator {
             override fun getBlock() = IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
+            override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
         }, object : ScoreCalculator {
             override fun getScore(cleanedRows: Int) = Points(0)
         })

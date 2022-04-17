@@ -1,6 +1,7 @@
 package game
 
 import block_factory.BlockCreator
+import block_factory.BlockType
 import blocks.Block
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
@@ -28,6 +29,7 @@ class ScoreTest {
                 counter++
                 return result
             }
+            override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
         }, object : ScoreCalculator {
             override fun getScore(cleanedRows: Int) = Points(cleanedRows)
         })
@@ -42,7 +44,6 @@ class ScoreTest {
     @Test
     fun `line should have a score of 1`() {
         getCompletedLines(lines = 1)
-        val x = game.getGrid()
         assertEquals(Points(1), game.getScore())
     }
 
@@ -64,12 +65,12 @@ class ScoreTest {
         assertEquals(Points(4), game.getScore())
     }
 
-    fun getCompletedLines(lines: Int) {
+    private fun getCompletedLines(lines: Int) {
         for (i in 0 until lines)
             getOneLine()
     }
 
-    fun getOneLine() {
+    private fun getOneLine() {
         // square block
         for (i in 0 until GAME_COLUMNS)
             game.moveBlock(Direction.RIGHT)

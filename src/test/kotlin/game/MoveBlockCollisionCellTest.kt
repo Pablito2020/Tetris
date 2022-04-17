@@ -1,6 +1,7 @@
 package game
 
 import block_factory.BlockCreator
+import block_factory.BlockType
 import blocks.Block
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
@@ -28,6 +29,7 @@ class MoveBlockCollisionCellTest {
                 return IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
             }
         }
+        override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
     }
 
     @BeforeEach
