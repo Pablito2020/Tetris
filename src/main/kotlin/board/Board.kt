@@ -16,6 +16,8 @@ class Board(private val row: Int, private val column: Int) {
         return board[position.row][position.column] == Cell.EMPTY
     }
 
+    fun isClear(row: Int) = isValidRow(row) && board[row].all { it == Cell.EMPTY }
+
     fun redoBoardWithClearedCells() {
         var counterFull = 0
         for (currentRow in row - 1 downTo 0) {
