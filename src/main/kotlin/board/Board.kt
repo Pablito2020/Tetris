@@ -21,7 +21,9 @@ class Board(private val row: Int, private val column: Int) {
     fun redoBoardWithClearedCells() {
         var counterFull = 0
         for (currentRow in row - 1 downTo 0) {
-            if (isFull(currentRow)) {
+            if (isClear(currentRow))
+                break
+            else if (isFull(currentRow)) {
                 counterFull += 1
                 clear(currentRow)
             } else {
