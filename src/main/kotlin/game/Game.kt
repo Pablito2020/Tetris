@@ -53,6 +53,11 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         block!!.getNeededPositions().forEach { board.writePosition(block!!.getCell(), it) }
     }
 
+    fun hasFinished(): Boolean {
+        assertBlockNotNull()
+        return !blockIsInValidPosition()
+    }
+
     private fun assertBlockNotNull() {
         if (block == null)
             throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
