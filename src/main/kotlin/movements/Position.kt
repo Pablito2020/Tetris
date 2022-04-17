@@ -7,6 +7,7 @@ data class Position(val row: Int, val column: Int) {
             Direction.DOWN -> Position(row + 1, column)
             Direction.LEFT -> Position(row, column - 1)
             Direction.RIGHT -> Position(row, column + 1)
+            Direction.UP -> Position(row - 1, column)
         }
     }
 

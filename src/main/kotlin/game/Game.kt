@@ -6,6 +6,7 @@ import board.Board
 import board.Cell
 import game.exceptions.EmptyCurrentBlockException
 import movements.Direction
+import movements.Position
 import score.ScoreCalculator
 
 internal const val GAME_COLUMNS = 10
@@ -46,5 +47,13 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         block!!.move(direction)
     }
 
+    fun blockCanMoveDownNext(): Boolean {
+        if (block == null)
+            throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
+        block!!.move(Direction.DOWN)
+        val canMoveDownMore = block!!.getNeededPositions().all { board.isInside(it.addAxes(Position(GAME_CELL_BUFFER, 0))) && board.isEmpty(it.addAxes(Position(GAME_CELL_BUFFER, 0))) }
+        block!!.move(Direction.UP)
+        return canMoveDownMore
+    }
 
 }
