@@ -22,6 +22,7 @@ class SBlock(position: Position) : Block {
     override fun rotate(degree: Rotation) = blockLogic.rotate(degree)
 
     override fun move(direction: Direction) = blockLogic.move(direction)
+
     override fun getCell() = Cell.S_BLOCK
 
 }

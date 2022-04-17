@@ -1,10 +1,10 @@
 package blocks.implementation
 
 import blocks.Block
-import movements.Rotation
 import board.Cell
 import movements.Direction
 import movements.Position
+import movements.Rotation
 
 internal val jBlockPositions = listOf(
     listOf(Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2)),
@@ -22,6 +22,7 @@ class JBlock(initialPosition: Position) : Block {
     override fun rotate(degree: Rotation) = logic.rotate(degree)
 
     override fun move(direction: Direction) = logic.move(direction)
+
     override fun getCell() = Cell.J_BLOCK
 
 }

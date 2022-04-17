@@ -19,6 +19,7 @@ class SquareBlock(initialPosition: Position) : Block {
     override fun rotate(degree: Rotation) {}
 
     override fun move(direction: Direction) = logic.move(direction)
+
     override fun getCell() = Cell.SQUARE_BLOCK
 
 }
