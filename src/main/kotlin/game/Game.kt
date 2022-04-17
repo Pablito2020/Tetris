@@ -27,6 +27,37 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         return result
     }
 
+    fun getNextBlock() {
+        block = creator.getBlock()
+    }
+
+    fun moveBlock(direction: Direction) {
+        assertBlockNotNull()
+        block!!.move(direction)
+    }
+
+    fun blockCanMoveDownNext(): Boolean {
+        assertBlockNotNull()
+        block!!.move(Direction.DOWN)
+        val canMoveDownMore = block!!.getBoardPositions().all { board.isInside(it) && board.isEmpty(it) }
+        block!!.move(Direction.UP)
+        return canMoveDownMore
+    }
+
+    fun writeBlockToBoard() {
+        assertBlockNotNull()
+        if (blockCanMoveDownNext())
+            throw BlockCanMoveDownException("Block can move down next, so it's impossible to write it to the board")
+        block!!.getBoardPositions().forEach { board.writePosition(block!!.getCell(), it) }
+    }
+
+    private fun Block.getBoardPositions() = getNeededPositions().map { it.addAxes(Position(GAME_CELL_BUFFER, 0)) }
+
+    private fun assertBlockNotNull() {
+        if (block == null)
+            throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
+    }
+
     private fun getMutableGrid(): MutableList<MutableList<GameCell>> {
         val currentBoard: List<List<Cell>> = board.board
         return getGridFromBoard(currentBoard)
@@ -37,34 +68,5 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         val result = mappedBoard.subList(GAME_CELL_BUFFER, mappedBoard.size).map { it.toMutableList() }.toMutableList()
         return result
     }
-
-    fun getNextBlock() {
-        block = creator.getBlock()
-    }
-
-    fun moveBlock(direction: Direction) {
-        if (block == null)
-            throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
-        block!!.move(direction)
-    }
-
-    fun blockCanMoveDownNext(): Boolean {
-        if (block == null)
-            throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
-        block!!.move(Direction.DOWN)
-        val canMoveDownMore = block!!.getBoardPositions().all { board.isInside(it) && board.isEmpty(it) }
-        block!!.move(Direction.UP)
-        return canMoveDownMore
-    }
-
-    fun writeBlockToBoard() {
-        if (block == null)
-            throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
-        if (blockCanMoveDownNext())
-            throw BlockCanMoveDownException("Block can move down next, so it's impossible to write it to the board")
-        block!!.getBoardPositions().forEach { board.writePosition(block!!.getCell(), it) }
-    }
-
-    private fun Block.getBoardPositions() = getNeededPositions().map { it.addAxes(Position(GAME_CELL_BUFFER, 0)) }
 
 }
