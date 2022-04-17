@@ -4,5 +4,13 @@ enum class Direction {
     LEFT,
     RIGHT,
     DOWN,
-    UP
+    UP;
+
+    fun opposite() = when (this) {
+        LEFT -> RIGHT
+        RIGHT -> LEFT
+        DOWN -> UP
+        UP -> DOWN
+    }
+
 }

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 import score.Points
 import score.ScoreCalculator
 
-class GameMoveBlockTest {
+class MoveBlockCollisionOutOfBoundsTest {
 
     private lateinit var game : Game
 
@@ -79,6 +79,56 @@ class GameMoveBlockTest {
         expectedGrid[0][(GAME_COLUMNS / 2) - 1] = GameCell(Cell.I_BLOCK, true)
         expectedGrid[0][(GAME_COLUMNS / 2)] = GameCell(Cell.I_BLOCK, true)
         expectedGrid[0][(GAME_COLUMNS / 2) + 1] = GameCell(Cell.I_BLOCK, true)
+        Assertions.assertEquals(expectedGrid, game.getGrid())
+    }
+
+
+    @Test
+    fun `move block to left if it is out of bounds doesn't changes block position`() {
+        game.getNextBlock()
+        // move block to the left of the board
+        for (i in 0 until (GAME_COLUMNS / 2) - 2)
+            game.moveBlock(Direction.LEFT)
+        // move block out of bounds
+        game.moveBlock(Direction.LEFT)
+        val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
+        expectedGrid[1][0] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[1][1] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[1][2] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[1][3] = GameCell(Cell.I_BLOCK, true)
+        Assertions.assertEquals(expectedGrid, game.getGrid())
+    }
+
+    @Test
+    fun `move block to right if it is out of bounds doesn't changes block position`() {
+        game.getNextBlock()
+        // move block to the left of the board
+        for (i in 0 until (GAME_COLUMNS / 2) - 2)
+            game.moveBlock(Direction.RIGHT)
+        // move block out of bounds
+        game.moveBlock(Direction.RIGHT)
+        val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
+        expectedGrid[1][GAME_COLUMNS - 4] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[1][GAME_COLUMNS - 3] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[1][GAME_COLUMNS - 2] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[1][GAME_COLUMNS - 1] = GameCell(Cell.I_BLOCK, true)
+        Assertions.assertEquals(expectedGrid, game.getGrid())
+    }
+
+
+    @Test
+    fun `move block to down doesn't do anything if it is out of bounds`() {
+        game.getNextBlock()
+        // move block to the left of the board
+        for (i in 1 until  GAME_ROWS)
+            game.moveBlock(Direction.DOWN)
+        // move block out of bounds
+        game.moveBlock(Direction.DOWN)
+        val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
+        expectedGrid[GAME_ROWS - 1][(GAME_COLUMNS / 2) - 2] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[GAME_ROWS - 1][(GAME_COLUMNS / 2) - 1] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[GAME_ROWS - 1][(GAME_COLUMNS / 2)] = GameCell(Cell.I_BLOCK, true)
+        expectedGrid[GAME_ROWS - 1][(GAME_COLUMNS / 2) + 1] = GameCell(Cell.I_BLOCK, true)
         Assertions.assertEquals(expectedGrid, game.getGrid())
     }
 

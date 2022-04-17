@@ -33,15 +33,13 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
 
     fun moveBlock(direction: Direction) {
         assertBlockNotNull()
-        block!!.move(direction)
+        if (isValidBlockPosition(direction))
+            block!!.move(direction)
     }
 
     fun blockCanMoveDownNext(): Boolean {
         assertBlockNotNull()
-        block!!.move(Direction.DOWN)
-        val canMoveDownMore = block!!.getBoardPositions().all { board.isInside(it) && board.isEmpty(it) }
-        block!!.move(Direction.UP)
-        return canMoveDownMore
+        return isValidBlockPosition(Direction.DOWN)
     }
 
     fun writeBlockToBoard() {
@@ -65,8 +63,14 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
 
     private fun getGridFromBoard(currentBoard: List<List<Cell>>): MutableList<MutableList<GameCell>> {
         val mappedBoard = currentBoard.map { row -> row.map { cell -> GameCell(cell, false) } }
-        val result = mappedBoard.subList(GAME_CELL_BUFFER, mappedBoard.size).map { it.toMutableList() }.toMutableList()
-        return result
+        return mappedBoard.subList(GAME_CELL_BUFFER, mappedBoard.size).map { it.toMutableList() }.toMutableList()
+    }
+
+    private fun isValidBlockPosition(direction: Direction): Boolean {
+        block!!.move(direction)
+        val canMove = block!!.getBoardPositions().all { board.isInside(it) && board.isEmpty(it) }
+        block!!.move(direction.opposite())
+        return canMove
     }
 
 }
