@@ -52,16 +52,7 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         if (block == null)
             throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
         block!!.move(Direction.DOWN)
-        val canMoveDownMore = block!!.getNeededPositions().all {
-            board.isInside(it.addAxes(Position(GAME_CELL_BUFFER, 0))) && board.isEmpty(
-                it.addAxes(
-                    Position(
-                        GAME_CELL_BUFFER,
-                        0
-                    )
-                )
-            )
-        }
+        val canMoveDownMore = block!!.getBoardPositions().all { board.isInside(it) && board.isEmpty(it) }
         block!!.move(Direction.UP)
         return canMoveDownMore
     }
@@ -71,15 +62,9 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
             throw EmptyCurrentBlockException("Did you initialize a block with getNextBlock()?")
         if (blockCanMoveDownNext())
             throw BlockCanMoveDownException("Block can move down next, so it's impossible to write it to the board")
-        block!!.getNeededPositions().forEach {
-            board.writePosition(
-                block!!.getCell(), it.addAxes(
-                    Position(
-                        GAME_CELL_BUFFER, 0
-                    )
-                )
-            )
-        }
+        block!!.getBoardPositions().forEach { board.writePosition(block!!.getCell(), it) }
     }
+
+    private fun Block.getBoardPositions() = getNeededPositions().map { it.addAxes(Position(GAME_CELL_BUFFER, 0)) }
 
 }
