@@ -1,6 +1,6 @@
 package blocks.SBlock
 
-import blocks.Rotation
+import movements.Rotation
 import blocks.SimpleRotation
 import blocks.implementation.SBlock
 import movements.Position

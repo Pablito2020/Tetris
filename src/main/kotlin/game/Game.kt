@@ -2,11 +2,12 @@ package game
 
 import block_factory.BlockCreator
 import blocks.Block
-import blocks.Rotation
+import movements.Rotation
 import board.Board
 import game.exceptions.BlockCanMoveDownException
 import game.exceptions.EmptyCurrentBlockException
 import movements.Direction
+import movements.Opposite
 import score.ScoreCalculator
 
 internal const val GAME_COLUMNS = 10
@@ -30,19 +31,19 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
 
     fun moveBlock(direction: Direction) {
         assertBlockNotNull()
-        if (isValidBlockPosition(direction))
+        if (isValidBlockPosition(block!!::move, direction))
             block!!.move(direction)
     }
 
     fun rotateBlock(rotation: Rotation) {
         assertBlockNotNull()
-        if (isValidBlockPosition(rotation))
+        if (isValidBlockPosition(block!!::rotate, rotation))
             block!!.rotate(rotation)
     }
 
     fun blockCanMoveDownNext(): Boolean {
         assertBlockNotNull()
-        return isValidBlockPosition(Direction.DOWN)
+        return isValidBlockPosition(block!!::move, Direction.DOWN)
     }
 
     fun writeBlockToBoard() {
@@ -62,19 +63,14 @@ class Game(private val creator: BlockCreator, val scoreCalculator: ScoreCalculat
         return immutableBoardGameCell.map { it.toMutableList() }.toMutableList()
     }
 
-    private fun isValidBlockPosition(direction: Direction): Boolean {
-        block!!.move(direction)
-        val canMove = block!!.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
-        block!!.move(direction.opposite())
+    private fun <T: Opposite<T>> isValidBlockPosition(action: (input: T) -> Unit, movement: T): Boolean {
+        action(movement)
+        val canMove = blockIsInValidPosition()
+        action(movement.opposite())
         return canMove
     }
 
-    private fun isValidBlockPosition(rotation: Rotation): Boolean {
-        block!!.rotate(rotation)
-        val canMove = block!!.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
-        block!!.rotate(rotation.opposite())
-        return canMove
-    }
+    private fun blockIsInValidPosition() = block!!.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
 
 
 }

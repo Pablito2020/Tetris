@@ -2,7 +2,7 @@ package game
 
 import block_factory.BlockCreator
 import blocks.Block
-import blocks.Rotation
+import movements.Rotation
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
 import board.Cell

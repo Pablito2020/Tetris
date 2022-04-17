@@ -1,6 +1,6 @@
 package blocks.IBlock
 
-import blocks.Rotation
+import movements.Rotation
 import blocks.DoubleRotation
 import blocks.implementation.IBlock
 import movements.Position

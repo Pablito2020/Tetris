@@ -1,6 +1,6 @@
 package blocks.LBlock
 
-import blocks.Rotation
+import movements.Rotation
 import blocks.SimpleRotation
 import blocks.implementation.LBlock
 import movements.Position

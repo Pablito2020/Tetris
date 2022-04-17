@@ -1,8 +1,6 @@
 package blocks.implementation
 
-import blocks.Block
-import blocks.Rotation
-import board.Cell
+import movements.Rotation
 import movements.Direction
 import movements.Position
 

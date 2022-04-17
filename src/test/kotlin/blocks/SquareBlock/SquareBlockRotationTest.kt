@@ -1,6 +1,6 @@
 package blocks.SquareBlock
 
-import blocks.Rotation
+import movements.Rotation
 import blocks.implementation.SquareBlock
 import movements.Position
 import org.junit.jupiter.api.BeforeEach

@@ -1,7 +1,7 @@
 package blocks.JBlock
 
 import blocks.DoubleRotation
-import blocks.Rotation
+import movements.Rotation
 import blocks.implementation.JBlock
 import movements.Position
 import org.junit.jupiter.api.BeforeEach

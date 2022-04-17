@@ -1,6 +1,6 @@
 package blocks.JBlock
 
-import blocks.Rotation
+import movements.Rotation
 import blocks.SimpleRotation
 import blocks.implementation.JBlock
 import movements.Position

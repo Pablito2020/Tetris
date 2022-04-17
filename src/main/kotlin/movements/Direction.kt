@@ -1,12 +1,12 @@
 package movements
 
-enum class Direction {
+enum class Direction: Opposite<Direction> {
     LEFT,
     RIGHT,
     DOWN,
     UP;
 
-    fun opposite() = when (this) {
+    override fun opposite() = when (this) {
         LEFT -> RIGHT
         RIGHT -> LEFT
         DOWN -> UP

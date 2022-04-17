@@ -1,10 +1,10 @@
-package blocks
+package movements
 
-enum class Rotation {
+enum class Rotation : Opposite<Rotation> {
     RIGHT_90_DEGREE,
     LEFT_90_DEGREE;
 
-    fun opposite() = when (this) {
+    override fun opposite() = when (this) {
         RIGHT_90_DEGREE -> LEFT_90_DEGREE
         LEFT_90_DEGREE -> RIGHT_90_DEGREE
     }

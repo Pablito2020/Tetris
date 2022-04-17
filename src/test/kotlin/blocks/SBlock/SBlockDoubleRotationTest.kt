@@ -2,7 +2,7 @@ package blocks.SBlock
 
 import blocks.Block
 import blocks.DoubleRotation
-import blocks.Rotation
+import movements.Rotation
 import blocks.implementation.SBlock
 import movements.Position
 import org.junit.jupiter.api.BeforeEach
