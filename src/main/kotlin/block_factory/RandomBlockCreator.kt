@@ -14,15 +14,6 @@ class RandomBlockCreator : BlockCreator {
 
     private var actualBlock: BlockWrapper = getNewBlock()
     private var nextBlock: BlockWrapper = getNewBlock()
-    private val list = listOf(
-        BlockWrapper(IBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), BlockType.I_BLOCK),
-        BlockWrapper(JBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), BlockType.J_BLOCK),
-        BlockWrapper(SBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), BlockType.S_BLOCK),
-        BlockWrapper(ZBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), BlockType.Z_BLOCK),
-        BlockWrapper(LBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), BlockType.L_BLOCK),
-        BlockWrapper(SquareBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), BlockType.SQUARE_BLOCK),
-        BlockWrapper(TBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), BlockType.T_BLOCK),
-    )
 
     override fun getBlock(): Block {
         val result = actualBlock.block
@@ -33,6 +24,14 @@ class RandomBlockCreator : BlockCreator {
 
     override fun getNextBlockType() = nextBlock.type
 
-    private fun getNewBlock() = list.random()
+    private fun getNewBlock() = when (val type = BlockType.values().random()) {
+        BlockType.I_BLOCK -> BlockWrapper(IBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
+        BlockType.J_BLOCK -> BlockWrapper(JBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
+        BlockType.S_BLOCK -> BlockWrapper(SBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
+        BlockType.Z_BLOCK -> BlockWrapper(ZBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
+        BlockType.L_BLOCK -> BlockWrapper(LBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
+        BlockType.SQUARE_BLOCK -> BlockWrapper(SquareBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
+        BlockType.T_BLOCK -> BlockWrapper(TBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
+    }
 
 }
