@@ -9,6 +9,22 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Pablito2020 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Pablito2020/Tetris</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/Pablito2020/Tetris.git</connection>
+        <developerConnection>scm:git:https://github.com/Pablito2020/Tetris.git
+        </developerConnection>
+        <url>https://github.com/Pablito2020/Tetris</url>
+        <tag>Tetris</tag>
+    </scm>
+
     <name>Tetris</name>
 
     <properties>
