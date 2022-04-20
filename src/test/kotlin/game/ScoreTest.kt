@@ -1,8 +1,6 @@
 package game
 
 import block_factory.BlockCreator
-import block_factory.BlockType
-import blocks.Block
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
 import movements.Direction
@@ -10,8 +8,12 @@ import movements.Position
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import org.mockito.invocation.Invocation
+import org.mockito.invocation.InvocationOnMock
 import score.Points
 import score.ScoreCalculator
+
 
 class ScoreTest {
 
@@ -19,20 +21,23 @@ class ScoreTest {
 
     @BeforeEach
     fun setUp() {
-        game = Game(object : BlockCreator {
-            var counter = 0
-            override fun getBlock(): Block {
-                val result = if (counter % 3 == 0)
-                    SquareBlock(Position(0, (GAME_COLUMNS / 2) - 2))
-                else
-                    IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
-                counter++
-                return result
-            }
-            override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
-        }, object : ScoreCalculator {
-            override fun getScore(cleanedRows: Int) = Points(cleanedRows)
-        })
+        // Block Creator
+        val blockCreator = Mockito.mock(BlockCreator::class.java)
+        Mockito.`when`(blockCreator.getBlock()).thenAnswer {
+            val invocations: Collection<Invocation> = Mockito.mockingDetails(blockCreator).invocations
+            if (invocations.size % 3 == 1)
+                SquareBlock(Position(0, (GAME_COLUMNS / 2) - 2))
+            else
+                IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
+        }
+        // Score Calculator
+        val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
+        Mockito.doAnswer { invocation: InvocationOnMock ->
+            val consumer: Int = invocation.getArgument(0)
+            Points(consumer)
+        }.`when`(scoreCalculator).getScore(Mockito.anyInt())
+        // Game
+        game = Game(blockCreator, scoreCalculator)
         game.getNextBlock()
     }
 

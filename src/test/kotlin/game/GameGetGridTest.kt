@@ -1,14 +1,13 @@
 package game
 
 import block_factory.BlockCreator
-import block_factory.BlockType
 import blocks.implementation.IBlock
 import board.Cell
 import movements.Position
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import score.Points
+import org.mockito.Mockito
 import score.ScoreCalculator
 
 class GameGetGridTest {
@@ -17,12 +16,10 @@ class GameGetGridTest {
 
     @BeforeEach
     fun setUp() {
-        game = Game(object : BlockCreator {
-            override fun getBlock() = IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
-            override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
-        }, object : ScoreCalculator {
-            override fun getScore(cleanedRows: Int) = Points(0)
-        })
+        val blockCreator = Mockito.mock(BlockCreator::class.java)
+        Mockito.`when`(blockCreator.getBlock()).thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
+        val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
+        game = Game(blockCreator, scoreCalculator)
     }
 
     @Test

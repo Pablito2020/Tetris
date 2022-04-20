@@ -1,8 +1,6 @@
 package game
 
 import block_factory.BlockCreator
-import block_factory.BlockType
-import blocks.Block
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
 import board.Cell
@@ -11,38 +9,31 @@ import movements.Position
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import score.Points
+import org.mockito.Mockito
 import score.ScoreCalculator
 
 class MoveBlockCollisionCellTest {
 
     private lateinit var game: Game
 
-    // mock object: first call returns T Block, second call returns I Block
-    private val blockCreatorMock = object : BlockCreator {
-        var firstBlockAlreadyGiven = false
-        override fun getBlock(): Block {
-            if (!firstBlockAlreadyGiven) {
-                firstBlockAlreadyGiven = true
-                return SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1))
-            } else {
-                return IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
-            }
-        }
-        override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
-    }
-
     @BeforeEach
     fun setUp() {
-        game = Game(blockCreatorMock, object : ScoreCalculator {
-            override fun getScore(cleanedRows: Int) = Points(0)
-        })
-        // generate, move square block down and save it to the board
+        val blockCreator = Mockito.mock(BlockCreator::class.java)
+        Mockito.`when`(blockCreator.getBlock())
+            .thenReturn(SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1)))
+            .thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
+        val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
+        game = Game(blockCreator, scoreCalculator)
+        setUpGame()
+    }
+
+    private fun setUpGame() {
+        // Generate and move square block down and save it to the board
         game.getNextBlock()
         for (i in 0 until GAME_ROWS)
             game.moveBlock(Direction.DOWN)
         game.writeBlockToBoard()
-        // generate I block next
+        // Generate I block
         game.getNextBlock()
     }
 

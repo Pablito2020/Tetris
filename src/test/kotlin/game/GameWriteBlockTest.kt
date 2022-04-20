@@ -21,6 +21,7 @@ class GameWriteBlockTest {
 
     @BeforeEach
     fun setUp() {
+
         game = Game(object : BlockCreator {
             override fun getBlock() = IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
             override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
@@ -48,7 +49,7 @@ class GameWriteBlockTest {
     fun `block that can be written and it writes appears as a new cell`() {
         // Create first block, move it down, write it, and then get a new one
         game.getNextBlock()
-        for( i in 1 until GAME_ROWS - 1)
+        for (i in 1 until GAME_ROWS - 1)
             game.moveBlock(Direction.DOWN)
         game.writeBlockToBoard()
         game.getNextBlock()

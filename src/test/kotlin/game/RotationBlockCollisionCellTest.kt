@@ -1,43 +1,34 @@
 package game
 
 import block_factory.BlockCreator
-import block_factory.BlockType
-import blocks.Block
-import movements.Rotation
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
 import board.Cell
 import movements.Direction
 import movements.Position
+import movements.Rotation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import score.Points
+import org.mockito.Mockito
 import score.ScoreCalculator
 
 class RotationBlockCollisionCellTest {
 
     private lateinit var game: Game
 
-    // mock object: first call returns T Block, second call returns I Block
-    private val blockCreatorMock = object : BlockCreator {
-        var counter = 0
-        override fun getBlock(): Block {
-            return if (counter == 2) {
-                IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
-            } else {
-                counter += 1
-                SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1))
-            }
-        }
-        override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
-    }
-
     @BeforeEach
     fun setUp() {
-        game = Game(blockCreatorMock, object : ScoreCalculator {
-            override fun getScore(cleanedRows: Int) = Points(0)
-        })
+        val blockCreator = Mockito.mock(BlockCreator::class.java)
+        Mockito.`when`(blockCreator.getBlock())
+            .thenReturn(SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1)))
+            .thenReturn(SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1)))
+            .thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
+        game = Game(blockCreator, Mockito.mock(ScoreCalculator::class.java))
+        moveSquaresDown()
+    }
+
+    private fun moveSquaresDown() {
         // generate, move squares blocks down and save it to the board
         (0 until 2).forEach { _ ->
             game.getNextBlock()
