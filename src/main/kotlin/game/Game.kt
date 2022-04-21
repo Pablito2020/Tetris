@@ -23,7 +23,8 @@ class Game(private val creator: BlockCreator, private val scoreCalculator: Score
     fun getGrid(): List<List<GameCell>> {
         val result = getGameCellGridFromBoard()
         if (block != null)
-            block!!.getNeededPositions().forEach { result[it.row][it.column] = GameCell(block!!.getCell(), true) }
+            block!!.getNeededPositions()
+                .forEach { result[it.row][it.column] = GameCell(block!!.getCell(), isCurrentBlockCell = true) }
         return result
     }
 
@@ -71,11 +72,12 @@ class Game(private val creator: BlockCreator, private val scoreCalculator: Score
     }
 
     private fun getGameCellGridFromBoard(): MutableList<MutableList<GameCell>> {
-        val immutableBoardGameCell = board.board.map { row -> row.map { cell -> GameCell(cell, false) } }
+        val immutableBoardGameCell = board.board.map { row -> row.map { cell -> GameCell(cell) } }
         return immutableBoardGameCell.map { it.toMutableList() }.toMutableList()
     }
 
-    private fun blockIsInValidPosition(block: Block) = block.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
+    private fun blockIsInValidPosition(block: Block) =
+        block.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
 
     private fun checkIfCompletedRows() {
         if (hasCompletedRows()) {
