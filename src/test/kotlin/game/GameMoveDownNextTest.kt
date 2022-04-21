@@ -21,7 +21,7 @@ class GameMoveDownNextTest {
         Mockito.`when`(blockCreator.getBlock()).thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
         val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
         game = Game(blockCreator, scoreCalculator)
-        game.getNextBlock()
+        game.generateNextBlock()
     }
 
     @Test

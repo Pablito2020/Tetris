@@ -28,7 +28,7 @@ class Game(private val creator: BlockCreator, private val scoreCalculator: Score
         return result
     }
 
-    fun getNextBlock() {
+    fun generateNextBlock() {
         block = creator.getBlock()
     }
 

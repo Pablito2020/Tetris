@@ -34,7 +34,7 @@ class ScoreTest {
             override fun getScore(cleanedRows: Int) = Points(cleanedRows)
         }
         game = Game(blockCreator, scoreCalculator)
-        game.getNextBlock()
+        game.generateNextBlock()
     }
 
     @Test
@@ -79,18 +79,18 @@ class ScoreTest {
             game.moveBlock(Direction.DOWN)
         game.writeBlockToBoard()
         // first I block
-        game.getNextBlock()
+        game.generateNextBlock()
         for (i in 0 until GAME_COLUMNS)
             game.moveBlock(Direction.LEFT)
         for (i in 0 until GAME_ROWS)
             game.moveBlock(Direction.DOWN)
         game.writeBlockToBoard()
         // second I block
-        game.getNextBlock()
+        game.generateNextBlock()
         game.moveBlock(Direction.RIGHT)
         for (i in 0 until GAME_ROWS)
             game.moveBlock(Direction.DOWN)
         game.writeBlockToBoard()
-        game.getNextBlock()
+        game.generateNextBlock()
     }
 }

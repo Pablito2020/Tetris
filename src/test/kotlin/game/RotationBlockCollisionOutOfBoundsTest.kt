@@ -21,7 +21,7 @@ class RotationBlockCollisionOutOfBoundsTest {
         val blockCreator = Mockito.mock(BlockCreator::class.java)
         Mockito.`when`(blockCreator.getBlock()).thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
         game = Game(blockCreator, Mockito.mock(ScoreCalculator::class.java))
-        game.getNextBlock()
+        game.generateNextBlock()
     }
 
     @Test

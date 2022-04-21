@@ -33,7 +33,7 @@ class MoveBlockCollisionOutOfBoundsTest {
 
     @Test
     fun `move block to right changes board one position to right`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         game.moveBlock(Direction.RIGHT)
         val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
         expectedGrid[1][(GAME_COLUMNS / 2) - 1] = GameCell(Cell.I_BLOCK, true)
@@ -45,7 +45,7 @@ class MoveBlockCollisionOutOfBoundsTest {
 
     @Test
     fun `move block to left changes board one position to left`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         game.moveBlock(Direction.LEFT)
         val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
         expectedGrid[1][(GAME_COLUMNS / 2) - 3] = GameCell(Cell.I_BLOCK, true)
@@ -58,7 +58,7 @@ class MoveBlockCollisionOutOfBoundsTest {
 
     @Test
     fun `move block to down changes board one position to down`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         game.moveBlock(Direction.DOWN)
         val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
         expectedGrid[2][(GAME_COLUMNS / 2) - 2] = GameCell(Cell.I_BLOCK, true)
@@ -71,7 +71,7 @@ class MoveBlockCollisionOutOfBoundsTest {
 
     @Test
     fun `move block to up changes board one position to up`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         game.moveBlock(Direction.UP)
         val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
         expectedGrid[0][(GAME_COLUMNS / 2) - 2] = GameCell(Cell.I_BLOCK, true)
@@ -84,7 +84,7 @@ class MoveBlockCollisionOutOfBoundsTest {
 
     @Test
     fun `move block to left if it is out of bounds doesn't changes block position`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         // move block to the left of the board
         for (i in 0 until (GAME_COLUMNS / 2) - 2)
             game.moveBlock(Direction.LEFT)
@@ -100,7 +100,7 @@ class MoveBlockCollisionOutOfBoundsTest {
 
     @Test
     fun `move block to right if it is out of bounds doesn't changes block position`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         // move block to the left of the board
         for (i in 0 until (GAME_COLUMNS / 2) - 2)
             game.moveBlock(Direction.RIGHT)
@@ -117,7 +117,7 @@ class MoveBlockCollisionOutOfBoundsTest {
 
     @Test
     fun `move block to down doesn't do anything if it is out of bounds`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         // move block to the left of the board
         for (i in 1 until GAME_ROWS)
             game.moveBlock(Direction.DOWN)

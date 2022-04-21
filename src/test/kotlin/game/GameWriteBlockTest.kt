@@ -39,7 +39,7 @@ class GameWriteBlockTest {
 
     @Test
     fun `new block that can move next should not be written`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         Assertions.assertThrows(BlockCanMoveDownException::class.java) {
             game.writeBlockToBoard()
         }
@@ -48,11 +48,11 @@ class GameWriteBlockTest {
     @Test
     fun `block that can be written and it writes appears as a new cell`() {
         // Create first block, move it down, write it, and then get a new one
-        game.getNextBlock()
+        game.generateNextBlock()
         for (i in 1 until GAME_ROWS - 1)
             game.moveBlock(Direction.DOWN)
         game.writeBlockToBoard()
-        game.getNextBlock()
+        game.generateNextBlock()
         // Expected: block saved at the bottom, and a new (current) block at the top
         val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
         expectedGrid[GAME_ROWS - 1][(GAME_COLUMNS / 2) - 2] = GameCell(Cell.I_BLOCK, false)

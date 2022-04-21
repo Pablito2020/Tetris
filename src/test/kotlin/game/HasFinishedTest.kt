@@ -23,7 +23,7 @@ class HasFinishedTest {
         })
         val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
         game = Game(blockCreator, scoreCalculator)
-        game.getNextBlock()
+        game.generateNextBlock()
     }
 
     @Test
@@ -38,7 +38,7 @@ class HasFinishedTest {
             for (j in 0 until GAME_ROWS)
                 game.moveBlock(Direction.DOWN)
             game.writeBlockToBoard()
-            game.getNextBlock()
+            game.generateNextBlock()
         }
         assertTrue(game.hasFinished())
     }
@@ -49,7 +49,7 @@ class HasFinishedTest {
             for (j in 0 until GAME_ROWS)
                 game.moveBlock(Direction.DOWN)
             game.writeBlockToBoard()
-            game.getNextBlock()
+            game.generateNextBlock()
         }
         assertFalse(game.hasFinished())
     }

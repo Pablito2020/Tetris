@@ -30,7 +30,7 @@ class GameGetGridTest {
 
     @Test
     fun `get grid after first get block`() {
-        game.getNextBlock()
+        game.generateNextBlock()
         val expectedGrid = MutableList(GAME_ROWS) { MutableList(GAME_COLUMNS) { GameCell(Cell.EMPTY, false) } }
         expectedGrid[1][(GAME_COLUMNS / 2) - 2] = GameCell(Cell.I_BLOCK, true)
         expectedGrid[1][(GAME_COLUMNS / 2) - 1] = GameCell(Cell.I_BLOCK, true)

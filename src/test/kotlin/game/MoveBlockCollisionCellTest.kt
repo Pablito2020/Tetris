@@ -29,12 +29,12 @@ class MoveBlockCollisionCellTest {
 
     private fun setUpGame() {
         // Generate and move square block down and save it to the board
-        game.getNextBlock()
+        game.generateNextBlock()
         for (i in 0 until GAME_ROWS)
             game.moveBlock(Direction.DOWN)
         game.writeBlockToBoard()
         // Generate I block
-        game.getNextBlock()
+        game.generateNextBlock()
     }
 
     @Test

@@ -22,7 +22,7 @@ class GameFacade(
      */
     fun start() {
         if (!started)
-            game.getNextBlock().also { started = true}
+            game.generateNextBlock().also { started = true}
         else
             throw IllegalAccessError("Game has already started")
     }
@@ -105,7 +105,7 @@ class GameFacade(
     private fun checkIfHasToWrite() {
         if (!game.blockCanMoveDownNext()) {
             game.writeBlockToBoard()
-            game.getNextBlock()
+            game.generateNextBlock()
         }
     }
 

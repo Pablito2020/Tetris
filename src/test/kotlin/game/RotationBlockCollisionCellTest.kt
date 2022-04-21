@@ -31,13 +31,13 @@ class RotationBlockCollisionCellTest {
     private fun moveSquaresDown() {
         // generate, move squares blocks down and save it to the board
         (0 until 2).forEach { _ ->
-            game.getNextBlock()
+            game.generateNextBlock()
             (0 until GAME_ROWS).forEach { _ ->
                 game.moveBlock(Direction.DOWN)
             }
             game.writeBlockToBoard()
         }
-        game.getNextBlock()
+        game.generateNextBlock()
     }
 
     @Test
