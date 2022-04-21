@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.mockito.invocation.Invocation
-import org.mockito.invocation.InvocationOnMock
 import score.Points
 import score.ScoreCalculator
 
@@ -31,12 +30,9 @@ class ScoreTest {
                 IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
         }
         // Score Calculator
-        val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
-        Mockito.doAnswer { invocation: InvocationOnMock ->
-            val consumer: Int = invocation.getArgument(0)
-            Points(consumer)
-        }.`when`(scoreCalculator).getScore(Mockito.anyInt())
-        // Game
+        val scoreCalculator = object : ScoreCalculator {
+            override fun getScore(cleanedRows: Int) = Points(cleanedRows)
+        }
         game = Game(blockCreator, scoreCalculator)
         game.getNextBlock()
     }
