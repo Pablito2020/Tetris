@@ -20,8 +20,8 @@ class LBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 90 degrees to right and then to left stays on same position`() {
-        lBlock.rotate(Rotation.RIGHT_90_DEGREE)
-        lBlock.rotate(Rotation.LEFT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.LEFT_90_DEGREE)
         assertEquals(
             listOf(Position(0, 2), Position(1, 0), Position(1, 1), Position(1, 2)),
             lBlock.getNeededPositions()
@@ -30,8 +30,8 @@ class LBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 90 degrees to left and then to right stays on same position`() {
-        lBlock.rotate(Rotation.LEFT_90_DEGREE)
-        lBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.LEFT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.RIGHT_90_DEGREE)
         assertEquals(
             listOf(Position(0, 2), Position(1, 0), Position(1, 1), Position(1, 2)),
             lBlock.getNeededPositions()
@@ -40,8 +40,8 @@ class LBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 180 degrees to left`() {
-        lBlock.rotate(Rotation.LEFT_90_DEGREE)
-        lBlock.rotate(Rotation.LEFT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.LEFT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.LEFT_90_DEGREE)
         assertEquals(
             listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)),
             lBlock.getNeededPositions()
@@ -50,8 +50,8 @@ class LBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 180 degrees to right`() {
-        lBlock.rotate(Rotation.RIGHT_90_DEGREE)
-        lBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        lBlock = lBlock.rotate(Rotation.RIGHT_90_DEGREE)
         assertEquals(
             listOf(Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)),
             lBlock.getNeededPositions()

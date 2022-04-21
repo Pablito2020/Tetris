@@ -9,9 +9,9 @@ interface Block {
 
     fun getNeededPositions(): Collection<Position>
 
-    fun rotate(degree: Rotation)
+    fun rotate(degree: Rotation): Block
 
-    fun move(direction: Direction)
+    fun move(direction: Direction): Block
 
     fun getCell(): Cell
 

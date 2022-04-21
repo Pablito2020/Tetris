@@ -10,15 +10,15 @@ internal val squareBlockPosition = listOf(
     Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)
 )
 
-class SquareBlock(initialPosition: Position) : Block {
+class SquareBlock(private val initialPosition: Position, private val initialIndex: Int = 0) : Block {
 
     private val logic = BlockLogic(listOf(squareBlockPosition), initialPosition)
 
-    override fun getNeededPositions(): Collection<Position> = logic.getNeededPositions()
+    override fun getNeededPositions(): Collection<Position> = logic.getNeededPositions(initialIndex)
 
-    override fun rotate(degree: Rotation) {}
+    override fun rotate(degree: Rotation) = SquareBlock(initialPosition)
 
-    override fun move(direction: Direction) = logic.move(direction)
+    override fun move(direction: Direction) = SquareBlock(initialPosition.move(direction), initialIndex)
 
     override fun getCell() = Cell.SQUARE_BLOCK
 

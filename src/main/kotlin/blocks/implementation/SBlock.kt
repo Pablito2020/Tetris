@@ -13,15 +13,15 @@ internal val sBlockPositions = listOf(
     listOf(Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1))
 )
 
-class SBlock(position: Position) : Block {
+class SBlock(private val position: Position, private val initialIndex: Int = 0) : Block {
 
     private val blockLogic = BlockLogic(sBlockPositions, position)
 
-    override fun getNeededPositions(): Collection<Position> = blockLogic.getNeededPositions()
+    override fun getNeededPositions(): Collection<Position> = blockLogic.getNeededPositions(initialIndex)
 
-    override fun rotate(degree: Rotation) = blockLogic.rotate(degree)
+    override fun rotate(degree: Rotation) = SBlock(position, blockLogic.rotate(degree, initialIndex))
 
-    override fun move(direction: Direction) = blockLogic.move(direction)
+    override fun move(direction: Direction) = SBlock(position.move(direction), initialIndex)
 
     override fun getCell() = Cell.S_BLOCK
 

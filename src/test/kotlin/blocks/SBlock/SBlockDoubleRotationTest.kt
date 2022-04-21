@@ -20,8 +20,8 @@ class SBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 90 degrees to right and then to left stays on same position`() {
-        sBlock.rotate(Rotation.RIGHT_90_DEGREE)
-        sBlock.rotate(Rotation.LEFT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.LEFT_90_DEGREE)
         assertEquals(
             listOf(Position(2, 3), Position(2, 4), Position(3, 2), Position(3, 3)),
             sBlock.getNeededPositions()
@@ -30,8 +30,8 @@ class SBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 90 degrees to left and then to right stays on same position`() {
-        sBlock.rotate(Rotation.LEFT_90_DEGREE)
-        sBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.LEFT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.RIGHT_90_DEGREE)
         assertEquals(
             listOf(Position(2, 3), Position(2, 4), Position(3, 2), Position(3, 3)),
             sBlock.getNeededPositions()
@@ -40,8 +40,8 @@ class SBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 180 degrees to left`() {
-        sBlock.rotate(Rotation.LEFT_90_DEGREE)
-        sBlock.rotate(Rotation.LEFT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.LEFT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.LEFT_90_DEGREE)
         assertEquals(
             listOf(Position(3, 3), Position(3, 4), Position(4, 2), Position(4, 3)),
             sBlock.getNeededPositions()
@@ -50,8 +50,8 @@ class SBlockDoubleRotationTest : DoubleRotationTest {
 
     @Test
     override fun `Rotate block 180 degrees to right`() {
-        sBlock.rotate(Rotation.RIGHT_90_DEGREE)
-        sBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.RIGHT_90_DEGREE)
+        sBlock = sBlock.rotate(Rotation.RIGHT_90_DEGREE)
         assertEquals(
             listOf(Position(3, 3), Position(3, 4), Position(4, 2), Position(4, 3)),
             sBlock.getNeededPositions()

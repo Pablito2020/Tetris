@@ -6,7 +6,6 @@ import board.Board
 import game.exceptions.BlockCanMoveDownException
 import game.exceptions.EmptyCurrentBlockException
 import movements.Direction
-import movements.Opposite
 import movements.Rotation
 import score.Points
 import score.ScoreCalculator
@@ -34,19 +33,19 @@ class Game(private val creator: BlockCreator, private val scoreCalculator: Score
 
     fun moveBlock(direction: Direction) {
         assertBlockNotNull()
-        if (isValidBlockPosition(block!!::move, direction))
-            block!!.move(direction)
+        if (blockIsInValidPosition(block!!.move(direction)))
+            block = block!!.move(direction)
     }
 
     fun rotateBlock(rotation: Rotation) {
         assertBlockNotNull()
-        if (isValidBlockPosition(block!!::rotate, rotation))
-            block!!.rotate(rotation)
+        if (blockIsInValidPosition(block!!.rotate(rotation)))
+            block = block!!.rotate(rotation)
     }
 
     fun blockCanMoveDownNext(): Boolean {
         assertBlockNotNull()
-        return isValidBlockPosition(block!!::move, Direction.DOWN)
+        return blockIsInValidPosition(block!!.move(Direction.DOWN))
     }
 
     fun writeBlockToBoard() {
@@ -59,7 +58,7 @@ class Game(private val creator: BlockCreator, private val scoreCalculator: Score
 
     fun hasFinished(): Boolean {
         assertBlockNotNull()
-        return !blockIsInValidPosition()
+        return !blockIsInValidPosition(block!!)
     }
 
     fun getScore(): Points {
@@ -76,14 +75,7 @@ class Game(private val creator: BlockCreator, private val scoreCalculator: Score
         return immutableBoardGameCell.map { it.toMutableList() }.toMutableList()
     }
 
-    private fun <T : Opposite<T>> isValidBlockPosition(action: (input: T) -> Unit, movement: T): Boolean {
-        action(movement)
-        val canMove = blockIsInValidPosition()
-        action(movement.opposite())
-        return canMove
-    }
-
-    private fun blockIsInValidPosition() = block!!.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
+    private fun blockIsInValidPosition(block: Block) = block.getNeededPositions().all { board.isInside(it) && board.isEmpty(it) }
 
     private fun checkIfCompletedRows() {
         if (hasCompletedRows()) {
