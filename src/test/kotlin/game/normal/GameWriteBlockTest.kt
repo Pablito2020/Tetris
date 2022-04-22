@@ -1,9 +1,10 @@
-package game
+package game.normal
 
 import block_factory.BlockCreator
 import block_factory.BlockType
 import blocks.implementation.IBlock
 import board.Cell
+import game.GameCell
 import game.exceptions.BlockCanMoveDownException
 import game.exceptions.EmptyCurrentBlockException
 import movements.Direction
@@ -17,12 +18,12 @@ import score.ScoreCalculator
 
 class GameWriteBlockTest {
 
-    private lateinit var game: Game
+    private lateinit var game: NormalGame
 
     @BeforeEach
     fun setUp() {
 
-        game = Game(object : BlockCreator {
+        game = NormalGame(object : BlockCreator {
             override fun getBlock() = IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
             override fun getNextBlockType(): BlockType = TODO("Not yet implemented")
         }, object : ScoreCalculator {

@@ -1,9 +1,10 @@
-package game
+package game.normal
 
 import block_factory.BlockCreator
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
 import board.Cell
+import game.GameCell
 import movements.Direction
 import movements.Position
 import org.junit.jupiter.api.Assertions
@@ -14,7 +15,7 @@ import score.ScoreCalculator
 
 class MoveBlockCollisionCellTest {
 
-    private lateinit var game: Game
+    private lateinit var game: NormalGame
 
     @BeforeEach
     fun setUp() {
@@ -23,7 +24,7 @@ class MoveBlockCollisionCellTest {
             .thenReturn(SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1)))
             .thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
         val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
-        game = Game(blockCreator, scoreCalculator)
+        game = NormalGame(blockCreator, scoreCalculator)
         setUpGame()
     }
 

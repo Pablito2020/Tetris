@@ -1,4 +1,4 @@
-package game
+package game.normal
 
 import block_factory.BlockCreator
 import blocks.implementation.IBlock
@@ -16,7 +16,7 @@ import score.ScoreCalculator
 
 class ScoreTest {
 
-    private lateinit var game: Game
+    private lateinit var game: NormalGame
 
     @BeforeEach
     fun setUp() {
@@ -33,7 +33,7 @@ class ScoreTest {
         val scoreCalculator = object : ScoreCalculator {
             override fun getScore(cleanedRows: Int) = Points(cleanedRows)
         }
-        game = Game(blockCreator, scoreCalculator)
+        game = NormalGame(blockCreator, scoreCalculator)
         game.generateNextBlock()
     }
 

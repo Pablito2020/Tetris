@@ -1,9 +1,10 @@
-package game
+package game.normal
 
 import block_factory.BlockCreator
 import blocks.implementation.IBlock
 import blocks.implementation.SquareBlock
 import board.Cell
+import game.GameCell
 import movements.Direction
 import movements.Position
 import movements.Rotation
@@ -15,7 +16,7 @@ import score.ScoreCalculator
 
 class RotationBlockCollisionCellTest {
 
-    private lateinit var game: Game
+    private lateinit var game: NormalGame
 
     @BeforeEach
     fun setUp() {
@@ -24,7 +25,7 @@ class RotationBlockCollisionCellTest {
             .thenReturn(SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1)))
             .thenReturn(SquareBlock(Position(0, (GAME_COLUMNS / 2) - 1)))
             .thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
-        game = Game(blockCreator, Mockito.mock(ScoreCalculator::class.java))
+        game = NormalGame(blockCreator, Mockito.mock(ScoreCalculator::class.java))
         moveSquaresDown()
     }
 

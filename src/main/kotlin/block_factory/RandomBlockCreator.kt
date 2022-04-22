@@ -2,7 +2,7 @@ package block_factory
 
 import blocks.Block
 import blocks.implementation.*
-import game.GAME_COLUMNS
+import game.normal.GAME_COLUMNS
 import movements.Position
 
 data class BlockWrapper(val block: Block, val type: BlockType)

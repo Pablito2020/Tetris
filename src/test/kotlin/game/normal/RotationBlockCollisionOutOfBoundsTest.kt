@@ -1,8 +1,9 @@
-package game
+package game.normal
 
 import block_factory.BlockCreator
 import blocks.implementation.IBlock
 import board.Cell
+import game.GameCell
 import movements.Direction
 import movements.Position
 import movements.Rotation
@@ -14,13 +15,13 @@ import score.ScoreCalculator
 
 class RotationBlockCollisionOutOfBoundsTest {
 
-    private lateinit var game: Game
+    private lateinit var game: NormalGame
 
     @BeforeEach
     fun setUp() {
         val blockCreator = Mockito.mock(BlockCreator::class.java)
         Mockito.`when`(blockCreator.getBlock()).thenReturn(IBlock(Position(0, (GAME_COLUMNS / 2) - 2)))
-        game = Game(blockCreator, Mockito.mock(ScoreCalculator::class.java))
+        game = NormalGame(blockCreator, Mockito.mock(ScoreCalculator::class.java))
         game.generateNextBlock()
     }
 

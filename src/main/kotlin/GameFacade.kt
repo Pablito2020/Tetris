@@ -3,6 +3,7 @@ import block_factory.BlockType
 import block_factory.RandomBlockCreator
 import game.Game
 import game.GameCell
+import game.normal.NormalGame
 import movements.Direction
 import movements.Rotation
 import score.Points
@@ -11,10 +12,9 @@ import score.SimpleScoreCalculator
 
 class GameFacade(
     private val blockGenerator: BlockCreator = RandomBlockCreator(),
-    scoreCalculator: ScoreCalculator = SimpleScoreCalculator()
+    scoreCalculator: ScoreCalculator = SimpleScoreCalculator(),
+    private val game: Game = NormalGame(blockGenerator, scoreCalculator)
 ) {
-
-    private val game = Game(blockGenerator, scoreCalculator)
     private var started = false
 
     /**
@@ -22,7 +22,7 @@ class GameFacade(
      */
     fun start() {
         if (!started)
-            game.generateNextBlock().also { started = true}
+            game.generateNextBlock().also { started = true }
         else
             throw IllegalAccessError("Game has already started")
     }

@@ -1,4 +1,4 @@
-package game
+package game.normal
 
 import block_factory.BlockCreator
 import blocks.implementation.IBlock
@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
 
 class HasFinishedTest {
 
-    private lateinit var game: Game
+    private lateinit var game: NormalGame
 
     @BeforeEach
     fun setUp() {
@@ -22,7 +22,7 @@ class HasFinishedTest {
             IBlock(Position(0, (GAME_COLUMNS / 2) - 2))
         })
         val scoreCalculator = Mockito.mock(ScoreCalculator::class.java)
-        game = Game(blockCreator, scoreCalculator)
+        game = NormalGame(blockCreator, scoreCalculator)
         game.generateNextBlock()
     }
 
