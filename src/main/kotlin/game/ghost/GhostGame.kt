@@ -1,6 +1,7 @@
 package game.ghost
 
 import block_factory.BlockCreator
+import board.Cell
 import game.Game
 import game.GameCell
 import game.normal.NormalGame
@@ -49,7 +50,8 @@ class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game 
         // Write Result
         for (position in result) {
             val currentGhostBlock = GameCell(grid[position.row][position.column].cell, false, true)
-            grid[position.row + distance][position.column] = currentGhostBlock
+            if (grid[position.row + distance][position.column].cell == Cell.EMPTY)
+                grid[position.row + distance][position.column] = currentGhostBlock
         }
         return grid
     }
