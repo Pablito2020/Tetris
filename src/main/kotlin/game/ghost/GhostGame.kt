@@ -10,8 +10,9 @@ import movements.Position
 import movements.Rotation
 import score.Points
 import score.ScoreCalculator
+import java.io.Serializable
 
-class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game {
+class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game, Serializable {
 
     private val game = NormalGame(creator, scoreCalculator)
 
@@ -51,5 +52,15 @@ class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game 
             .forEach { ghostGrid[it.first.row][it.first.column] = GameCell(it.second.cell, false, true) }
         return ghostGrid
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as GhostGame
+        if (game != other.game) return false
+        return true
+    }
+
+    override fun hashCode() = game.hashCode()
 
 }
