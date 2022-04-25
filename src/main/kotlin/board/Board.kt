@@ -3,8 +3,9 @@ package board
 import board.exceptions.InvalidPositionException
 import board.exceptions.InvalidRowException
 import movements.Position
+import java.io.Serializable
 
-class Board(private val row: Int, private val column: Int) {
+class Board(private val row: Int, private val column: Int): Serializable {
 
     val board = MutableList(row) { MutableList(column) { Cell.EMPTY } }
 

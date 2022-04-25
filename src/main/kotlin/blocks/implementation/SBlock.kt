@@ -6,6 +6,7 @@ import board.Cell
 import movements.Direction
 import movements.Position
 import movements.Rotation
+import java.io.Serializable
 
 internal val sBlockPositions = mapOf(
     Orientation.NORMAL to listOf(Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1)),
@@ -14,7 +15,8 @@ internal val sBlockPositions = mapOf(
     Orientation.ROTATED_LEFT to listOf(Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1))
 )
 
-class SBlock(private val position: Position, private val orientation: Orientation = Orientation.NORMAL) : Block {
+data class SBlock(private val position: Position, private val orientation: Orientation = Orientation.NORMAL) : Block,
+    Serializable {
 
     override fun getNeededPositions(): Collection<Position> = sBlockPositions[orientation]!!.add(position)
 

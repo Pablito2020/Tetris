@@ -1,6 +1,8 @@
 package movements
 
-data class Position(val row: Int, val column: Int) {
+import java.io.Serializable
+
+data class Position(val row: Int, val column: Int): Serializable {
 
     fun move(direction: Direction): Position {
         return when (direction) {
