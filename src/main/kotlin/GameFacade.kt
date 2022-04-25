@@ -9,12 +9,13 @@ import movements.Rotation
 import score.Points
 import score.ScoreCalculator
 import score.SimpleScoreCalculator
+import java.io.Serializable
 
 class GameFacade(
     private val blockGenerator: BlockCreator = RandomBlockCreator(),
     scoreCalculator: ScoreCalculator = SimpleScoreCalculator(),
     private val game: Game = NormalGame(blockGenerator, scoreCalculator)
-) {
+): Serializable {
     private var started = false
 
     /**
@@ -107,6 +108,21 @@ class GameFacade(
             game.writeBlockToBoard()
             game.generateNextBlock()
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as GameFacade
+        if (game != other.game) return false
+        if (started != other.started) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = game.hashCode()
+        result = 31 * result + started.hashCode()
+        return result
     }
 
 }
