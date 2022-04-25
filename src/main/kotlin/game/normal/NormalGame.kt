@@ -11,12 +11,13 @@ import movements.Direction
 import movements.Rotation
 import score.Points
 import score.ScoreCalculator
+import java.io.Serializable
 
 internal const val GAME_COLUMNS = 10
 internal const val GAME_ROWS = 20
 internal const val DEFAULT_POINTS = 0
 
-class NormalGame(private val creator: BlockCreator, private val scoreCalculator: ScoreCalculator): Game {
+class NormalGame(private val creator: BlockCreator, private val scoreCalculator: ScoreCalculator): Game, Serializable {
 
     private val board: Board = Board(GAME_ROWS, GAME_COLUMNS)
     private var block: Block? = null
@@ -95,4 +96,22 @@ class NormalGame(private val creator: BlockCreator, private val scoreCalculator:
     private fun updateScore() {
         points = points.add(scoreCalculator.getScore(getCompletedRows()))
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as NormalGame
+        if (board != other.board) return false
+        if (block != other.block) return false
+        if (points != other.points) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = board.hashCode()
+        result = 31 * result + (block?.hashCode() ?: 0)
+        result = 31 * result + points.hashCode()
+        return result
+    }
+
 }
