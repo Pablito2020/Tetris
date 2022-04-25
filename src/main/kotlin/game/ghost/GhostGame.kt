@@ -15,10 +15,7 @@ class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game 
 
     private val game = NormalGame(creator, scoreCalculator)
 
-    override fun getGrid(): List<List<GameCell>> {
-        val grid = game.getGrid().toMutableList().map { it.toMutableList() }
-        return getGridWithGhostBlock(grid)
-    }
+    override fun getGrid(): List<List<GameCell>> = getGridWithGhostBlock(game.getGrid())
 
     override fun generateNextBlock() = game.generateNextBlock()
 
@@ -34,26 +31,25 @@ class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game 
 
     override fun getScore(): Points = game.getScore()
 
-    private fun getGridWithGhostBlock(grid: List<MutableList<GameCell>>): List<List<GameCell>> {
-        // get current cells of the block
-        val result = mutableListOf<Position>()
-        for ((rowI, row) in grid.withIndex()) {
-            for (column in row.indices) {
-                if (grid[rowI][column].isCurrentBlockCell)
-                    result.add(Position(rowI, column))
-            }
+    private fun getGridWithGhostBlock(grid: List<List<GameCell>>): List<List<GameCell>> {
+        val positionsCurrentBlock = getCurrentBlockPositions(grid)
+        if (positionsCurrentBlock.isEmpty()) return grid
+        return getGridWithGhostBlock(grid, positionsCurrentBlock)
+    }
+
+    private fun getCurrentBlockPositions(grid: List<List<GameCell>>): List<Position> =
+        grid.flatMapIndexed { row, gameCells ->
+            gameCells.indices.filter { column -> grid[row][column].isCurrentBlockCell }
+                .map { column -> Position(row, column) }
         }
-        if (result.isEmpty())
-            return grid
-        // get minimum row of current block
-        val distance = result.getRowOffset(grid)
-        // Write Result
-        for (position in result) {
-            val currentGhostBlock = GameCell(grid[position.row][position.column].cell, false, true)
-            if (grid[position.row + distance][position.column].cell == Cell.EMPTY)
-                grid[position.row + distance][position.column] = currentGhostBlock
-        }
-        return grid
+
+    private fun getGridWithGhostBlock(grid: List<List<GameCell>>, positions: List<Position>): List<List<GameCell>> {
+        val moveDistance = positions.getRowOffset(grid)
+        val ghostGrid = grid.toMutableList().map { it.toMutableList() }
+        positions.filter { grid[it.row + moveDistance][it.column].cell == Cell.EMPTY }
+            .map { Pair(Position(it.row + moveDistance, it.column), grid[it.row][it.column]) }
+            .forEach { ghostGrid[it.first.row][it.first.column] = GameCell(it.second.cell, false, true) }
+        return ghostGrid
     }
 
 }
