@@ -57,4 +57,20 @@ class Board(private val row: Int, private val column: Int): Serializable {
 
     private fun isValidColumn(column: Int) = column >= 0 && column < this.column
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as Board
+        if (row != other.row || column != other.column || board != other.board) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = row
+        result = 31 * result + column
+        result = 31 * result + board.hashCode()
+        return result
+    }
+
+
 }
