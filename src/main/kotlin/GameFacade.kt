@@ -31,77 +31,57 @@ class GameFacade(
     /**
      * Move the current block to the left and update the grid if needed
      */
-    fun left() {
-        game.moveBlock(Direction.LEFT)
-        checkIfHasToWrite()
-    }
+    fun left() = game.moveBlock(Direction.LEFT)
 
     /**
      * Move the current block to the right and update the grid if needed
      */
-    fun right() {
-        game.moveBlock(Direction.RIGHT)
-        checkIfHasToWrite()
-    }
+    fun right() = game.moveBlock(Direction.RIGHT)
 
     /**
      * Move the current block down and update the grid if needed
      */
     fun down() {
-        game.moveBlock(Direction.DOWN)
         checkIfHasToWrite()
+        game.moveBlock(Direction.DOWN)
     }
 
     /**
      * Move the current block down and update the grid if needed
      */
-    fun rotateLeft() {
-        game.rotateBlock(Rotation.LEFT_90_DEGREE)
-        checkIfHasToWrite()
-    }
+    fun rotateLeft() = game.rotateBlock(Rotation.LEFT_90_DEGREE)
 
     /**
      * Rotate the current block 90 degrees to the right, and update the grid if needed
      */
-    fun rotateRight() {
-        game.rotateBlock(Rotation.RIGHT_90_DEGREE)
-        checkIfHasToWrite()
-    }
+    fun rotateRight() = game.rotateBlock(Rotation.RIGHT_90_DEGREE)
 
     /**
      * Gets the current game grid
      * @return the current game grid
      * @see GameCell
      */
-    fun getGrid(): List<List<GameCell>> {
-        return game.getGrid()
-    }
+    fun getGrid(): List<List<GameCell>> = game.getGrid()
 
     /**
      * Returns the type of the next block that will be generated
      * @return the type of the next block that will be generated
      * @see BlockType
      */
-    fun getNextBlock(): BlockType {
-        return blockGenerator.getNextBlockType()
-    }
+    fun getNextBlock(): BlockType = blockGenerator.getNextBlockType()
 
     /**
      * Returns the current score of the game
      * @return the score of the game
      * @see Points
      */
-    fun getScore(): Points {
-        return game.getScore()
-    }
+    fun getScore() = game.getScore()
 
     /**
      * Returns whether the game is over or not
      * @return if the game is over or not
      */
-    fun hasFinished(): Boolean {
-        return game.hasFinished()
-    }
+    fun hasFinished() = game.hasFinished()
 
     private fun checkIfHasToWrite() {
         if (!game.blockCanMoveDownNext()) {
