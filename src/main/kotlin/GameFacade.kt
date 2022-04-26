@@ -37,17 +37,18 @@ class GameFacade(
     /**
      * Move the current block to the left and update the grid if needed
      */
-    fun left() = game.moveBlock(Direction.LEFT)
+    fun left() = assertNotFinished().also { game.moveBlock(Direction.LEFT) }
 
     /**
      * Move the current block to the right and update the grid if needed
      */
-    fun right() = game.moveBlock(Direction.RIGHT)
+    fun right() = assertNotFinished().also { game.moveBlock(Direction.RIGHT) }
 
     /**
      * Move the current block down and update the grid if needed
      */
     fun down() {
+        assertNotFinished()
         checkIfHasToWrite()
         game.moveBlock(Direction.DOWN)
     }
@@ -55,12 +56,12 @@ class GameFacade(
     /**
      * Move the current block down and update the grid if needed
      */
-    fun rotateLeft() = game.rotateBlock(Rotation.LEFT_90_DEGREE)
+    fun rotateLeft() = assertNotFinished().also { game.rotateBlock(Rotation.LEFT_90_DEGREE) }
 
     /**
      * Rotate the current block 90 degrees to the right, and update the grid if needed
      */
-    fun rotateRight() = game.rotateBlock(Rotation.RIGHT_90_DEGREE)
+    fun rotateRight() = assertNotFinished().also { game.rotateBlock(Rotation.RIGHT_90_DEGREE) }
 
     /**
      * Gets the current game grid
@@ -93,21 +94,21 @@ class GameFacade(
      * Drop the current block down the grid
      */
     fun dropBlock() {
-        while (game.blockCanMoveDownNext())
-            game.moveBlock(Direction.DOWN)
+        assertNotFinished()
+        while (game.blockCanMoveDownNext()) game.moveBlock(Direction.DOWN)
         writeBlock()
     }
 
-
     private fun checkIfHasToWrite() {
-        if (!game.blockCanMoveDownNext())
-            writeBlock()
+        if (!game.blockCanMoveDownNext()) writeBlock()
     }
 
     private fun writeBlock() {
         game.writeBlockToBoard()
         game.generateNextBlock()
     }
+
+    private fun assertNotFinished() = check(!hasFinished()) { "Game has finished" }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
