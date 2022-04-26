@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Pablito2020/Tetris/compare/v1.1.0...v2.0.0) (2022-04-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **game:** privatize game objects
+* **facade:** use ghost bool, not the hole game
+* **ghost:** Facade class now accepts a game constructor for
+allowing a new instance of GhostGame.
+* **game:** add gamecell default values
+
+### Features
+
+* **block:** add serialize ([409ac21](https://github.com/Pablito2020/Tetris/commit/409ac21f9c2fa08062c5e103acf110faae24ba2e))
+* **board:** add serialize ([a820d3d](https://github.com/Pablito2020/Tetris/commit/a820d3d0f29528382192bf65dafe847377e838ed))
+* **facade:** use ghost bool, not the hole game ([56f132e](https://github.com/Pablito2020/Tetris/commit/56f132ebe5724ae1e3b321092c6995a5c5cd6ca5))
+* **game-facade:** add serialize ([c85f6d2](https://github.com/Pablito2020/Tetris/commit/c85f6d2c65f01527ce053f4b98c4916838972930))
+* **game:** privatize game objects ([ee8f271](https://github.com/Pablito2020/Tetris/commit/ee8f2711aa8107ecdd34814d98479376d7abd786))
+* **ghost:** add serialize ([a39bdfd](https://github.com/Pablito2020/Tetris/commit/a39bdfdd9fea45da298741b21ece81d7e91c070d))
+* **ghost:** implement ghost block game feature ([b4a1840](https://github.com/Pablito2020/Tetris/commit/b4a18406f2a259f0da4884424ef1cd73b171cd97)), closes [#4](https://github.com/Pablito2020/Tetris/issues/4)
+* **normal-game:** implement serializable ([c22526c](https://github.com/Pablito2020/Tetris/commit/c22526c6742eb9b6191d3b8411ddf6fdea529610))
+
+
+### Bug Fixes
+
+* **facade:** add tetris for mobile movements ([801669c](https://github.com/Pablito2020/Tetris/commit/801669ccbdfc27a0d36acad537a79a0bdd9de7e8))
+* **ghost:** ghost block overloads current block ([aca156e](https://github.com/Pablito2020/Tetris/commit/aca156e56b46a0ce5fc12f6889508e0f1037a19b))
+
+
+* **game:** add gamecell default values ([111d2e5](https://github.com/Pablito2020/Tetris/commit/111d2e5805accfe1ad5004783d3aac063703b725))
+
 ## 1.1.0 (2022-04-18)
 
 
