@@ -89,11 +89,24 @@ class GameFacade(
      */
     fun hasFinished() = game.hasFinished()
 
+    /**
+     * Drop the current block down the grid
+     */
+    fun dropBlock() {
+        while (game.blockCanMoveDownNext())
+            game.moveBlock(Direction.DOWN)
+        writeBlock()
+    }
+
+
     private fun checkIfHasToWrite() {
-        if (!game.blockCanMoveDownNext()) {
-            game.writeBlockToBoard()
-            game.generateNextBlock()
-        }
+        if (!game.blockCanMoveDownNext())
+            writeBlock()
+    }
+
+    private fun writeBlock() {
+        game.writeBlockToBoard()
+        game.generateNextBlock()
     }
 
     override fun equals(other: Any?): Boolean {
