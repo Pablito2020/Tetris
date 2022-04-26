@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class BoardIsInsideTest : BoardTest() {
+internal class BoardIsInsideTest : BoardTest() {
 
     @Test
     fun `Out of bounds negative row position isn't inside board`() {

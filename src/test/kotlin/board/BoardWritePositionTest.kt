@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 
-class BoardWritePositionTest : BoardTest() {
+internal class BoardWritePositionTest : BoardTest() {
 
     @Test
     fun `Writing on invalid negative column throws InvalidPositionException`() {

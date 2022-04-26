@@ -2,7 +2,7 @@ package board
 
 import org.junit.jupiter.api.BeforeEach
 
-abstract class BoardTest {
+internal abstract class BoardTest {
 
     protected lateinit var board: Board
 

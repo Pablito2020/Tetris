@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
-class BoardSerializeTest {
+internal class BoardSerializeTest {
 
     private lateinit var board: Board
 

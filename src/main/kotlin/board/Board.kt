@@ -5,7 +5,7 @@ import board.exceptions.InvalidRowException
 import movements.Position
 import java.io.Serializable
 
-class Board(private val row: Int, private val column: Int): Serializable {
+internal class Board(private val row: Int, private val column: Int): Serializable {
 
     val board = MutableList(row) { MutableList(column) { Cell.EMPTY } }
 

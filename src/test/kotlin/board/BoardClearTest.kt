@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 
-class BoardClearTest : BoardTest() {
+internal class BoardClearTest : BoardTest() {
 
     @Test
     fun `Clearing on invalid negative row throws InvalidRowException`() {

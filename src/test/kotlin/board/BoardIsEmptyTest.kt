@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class BoardIsEmptyTest : BoardTest() {
+internal class BoardIsEmptyTest : BoardTest() {
 
     @Test
     fun `Accessing invalid position on empty throws invalid position exception`() {

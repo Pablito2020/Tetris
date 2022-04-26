@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class BoardIsFullTest : BoardTest() {
+internal class BoardIsFullTest : BoardTest() {
 
     @Test
     fun `Accessing invalid negative throws InvalidRowException`() {

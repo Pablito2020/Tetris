@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 
-class BoardRedoWithClearedCells: BoardTest() {
+internal class BoardRedoWithClearedCells: BoardTest() {
 
     private val ROW = 20
     private val COLUMN = 10
