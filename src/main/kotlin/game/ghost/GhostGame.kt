@@ -12,7 +12,7 @@ import score.Points
 import score.ScoreCalculator
 import java.io.Serializable
 
-class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game, Serializable {
+internal class GhostGame(creator: BlockCreator, scoreCalculator: ScoreCalculator) : Game, Serializable {
 
     private val game = NormalGame(creator, scoreCalculator)
 

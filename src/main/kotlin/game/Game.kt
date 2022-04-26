@@ -4,7 +4,7 @@ import movements.Direction
 import movements.Rotation
 import score.Points
 
-interface Game {
+internal interface Game {
 
     fun getGrid(): List<List<GameCell>>
 

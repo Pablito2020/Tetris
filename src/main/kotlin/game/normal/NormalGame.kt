@@ -17,7 +17,7 @@ internal const val GAME_COLUMNS = 10
 internal const val GAME_ROWS = 20
 internal const val DEFAULT_POINTS = 0
 
-class NormalGame(private val creator: BlockCreator, private val scoreCalculator: ScoreCalculator): Game, Serializable {
+internal class NormalGame(private val creator: BlockCreator, private val scoreCalculator: ScoreCalculator): Game, Serializable {
 
     private val board: Board = Board(GAME_ROWS, GAME_COLUMNS)
     private var block: Block? = null
