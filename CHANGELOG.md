@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Pablito2020/Tetris/compare/v2.0.0...v2.1.0) (2022-04-26)
+
+
+### Features
+
+* **facade:** implement drop block ([5b1837b](https://github.com/Pablito2020/Tetris/commit/5b1837b7ebb64c08d781bcc890fbb3f038f1e975)), closes [#5](https://github.com/Pablito2020/Tetris/issues/5)
+
+
+### Bug Fixes
+
+* **facade:** unsupported operations when game has finished ([a1ea82b](https://github.com/Pablito2020/Tetris/commit/a1ea82b19aa0cd79ffd762322a9416204160737d))
+
 ## [2.0.0](https://github.com/Pablito2020/Tetris/compare/v1.1.0...v2.0.0) (2022-04-26)
 
 
