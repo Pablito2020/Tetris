@@ -3,6 +3,7 @@ import block_factory.BlockType
 import block_factory.RandomBlockCreator
 import game.Game
 import game.GameCell
+import game.ghost.GhostGame
 import game.normal.NormalGame
 import movements.Direction
 import movements.Rotation
@@ -14,18 +15,23 @@ import java.io.Serializable
 class GameFacade(
     private val blockGenerator: BlockCreator = RandomBlockCreator(),
     scoreCalculator: ScoreCalculator = SimpleScoreCalculator(),
-    private val game: Game = NormalGame(blockGenerator, scoreCalculator)
-): Serializable {
+    ghost: Boolean = false
+) : Serializable {
+
+    private val game: Game
     private var started = false
+
+    init {
+        game = if (ghost) GhostGame(blockGenerator, scoreCalculator)
+        else NormalGame(blockGenerator, scoreCalculator)
+    }
 
     /**
      * Start the game
      */
     fun start() {
-        if (!started)
-            game.generateNextBlock().also { started = true }
-        else
-            throw IllegalAccessError("Game has already started")
+        if (!started) game.generateNextBlock().also { started = true }
+        else throw IllegalAccessError("Game has already started")
     }
 
     /**
