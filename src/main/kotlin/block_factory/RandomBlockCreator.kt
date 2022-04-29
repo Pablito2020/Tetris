@@ -12,17 +12,15 @@ internal const val INITIAL_COLUMN_BLOCK = (GAME_COLUMNS / 2) - 2
 
 class RandomBlockCreator : BlockCreator {
 
-    private var actualBlock: BlockWrapper = getNewBlock()
-    private var nextBlock: BlockWrapper = getNewBlock()
+    private var block: BlockWrapper = getNewBlock()
 
     override fun getBlock(): Block {
-        val result = actualBlock.block
-        actualBlock = nextBlock
-        nextBlock = getNewBlock()
+        val result = block.block
+        block = getNewBlock()
         return result
     }
 
-    override fun getNextBlockType() = nextBlock.type
+    override fun getNextBlockType() = block.type
 
     private fun getNewBlock() = when (val type = BlockType.values().random()) {
         BlockType.I_BLOCK -> BlockWrapper(IBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
