@@ -4,9 +4,9 @@ import blocks.implementation.*
 import movements.Position
 import java.util.*
 
-class BlockQueueCreator : TemplateQueueCreator(){
+class AllBlockQueueCreator : TemplateQueueCreator(){
 
-    internal val allBlockQueue: Queue<BlockWrapper> = LinkedList()
+    private val allBlockQueue: Queue<BlockWrapper> = LinkedList()
 
     init {
         allBlockQueue.addAll(

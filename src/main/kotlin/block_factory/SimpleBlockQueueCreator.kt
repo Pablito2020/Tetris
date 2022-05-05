@@ -6,7 +6,7 @@ import java.util.*
 
 class SimpleBlockQueueCreator: TemplateQueueCreator() {
 
-    internal val allBlockQueue: Queue<BlockWrapper> = LinkedList()
+    private val allBlockQueue: Queue<BlockWrapper> = LinkedList()
 
     init {
         allBlockQueue.addAll(
