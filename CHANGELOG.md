@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/Pablito2020/Tetris/compare/v2.1.1...v2.2.0) (2022-05-05)
+
+
+### Features
+
+* **block-creator:** add simple and all block queue creator ([fe7068e](https://github.com/Pablito2020/Tetris/commit/fe7068e89fca93a72882d4c6954d5accb077b6b7))
+
 ### [2.1.1](https://github.com/Pablito2020/Tetris/compare/v2.1.0...v2.1.1) (2022-04-29)
 
 
