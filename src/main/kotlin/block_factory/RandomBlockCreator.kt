@@ -1,28 +1,11 @@
 package block_factory
 
-import blocks.Block
 import blocks.implementation.*
-import game.normal.GAME_COLUMNS
 import movements.Position
 
-data class BlockWrapper(val block: Block, val type: BlockType)
+class RandomBlockCreator : TemplateBlockCreator() {
 
-internal const val INITIAL_ROW_BLOCK = 0
-internal const val INITIAL_COLUMN_BLOCK = (GAME_COLUMNS / 2) - 2
-
-class RandomBlockCreator : BlockCreator {
-
-    private var block: BlockWrapper = getNewBlock()
-
-    override fun getBlock(): Block {
-        val result = block.block
-        block = getNewBlock()
-        return result
-    }
-
-    override fun getNextBlockType() = block.type
-
-    private fun getNewBlock() = when (val type = BlockType.values().random()) {
+    override fun getNewBlock() = when (val type = BlockType.values().random()) {
         BlockType.I_BLOCK -> BlockWrapper(IBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
         BlockType.J_BLOCK -> BlockWrapper(JBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
         BlockType.S_BLOCK -> BlockWrapper(SBlock(Position(INITIAL_ROW_BLOCK, INITIAL_COLUMN_BLOCK)), type)
