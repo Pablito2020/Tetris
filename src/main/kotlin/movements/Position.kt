@@ -13,6 +13,6 @@ data class Position(val row: Int, val column: Int): Serializable {
         }
     }
 
-    fun addAxes(other: Position): Position = Position(row + other.row, column + other.column)
+    operator fun plus(other: Position): Position = Position(row + other.row, column + other.column)
 
 }

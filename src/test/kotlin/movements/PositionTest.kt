@@ -31,25 +31,25 @@ class PositionTest {
     @Test
     fun `Add axes with (0, 0) position`(){
         val other = Position(0, 0)
-        assertEquals(Position(1, 1), position.addAxes(other))
+        assertEquals(Position(1, 1), position + other)
     }
 
     @Test
     fun `Add axes with negative row position`(){
         val other = Position(-1, 0)
-        assertEquals(Position(0, 1), position.addAxes(other))
+        assertEquals(Position(0, 1), position + other)
     }
 
     @Test
     fun `Add axes with negative column position`(){
         val other = Position(0, -1)
-        assertEquals(Position(1, 0), position.addAxes(other))
+        assertEquals(Position(1, 0), position + other)
     }
 
     @Test
     fun `Simple positive add`(){
         val other = Position(1, 1)
-        assertEquals(Position(2, 2), position.addAxes(other))
+        assertEquals(Position(2, 2), position + other)
     }
 
 }
